@@ -1,0 +1,102 @@
+#!/usr/bin/env node
+
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Create OG image SVG
+const ogImageSvg = `<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#006DE0"/>
+  
+  <!-- Gradient overlay -->
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#006DE0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00224c;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#grad)"/>
+  
+  <!-- Main content -->
+  <text x="600" y="200" font-family="Arial, sans-serif" font-size="72" font-weight="bold" text-anchor="middle" fill="white">
+    PARK AND PAINT
+  </text>
+  
+  <text x="600" y="280" font-family="Arial, sans-serif" font-size="36" text-anchor="middle" fill="white" opacity="0.9">
+    Car Paint Repair Services
+  </text>
+  
+  <text x="600" y="350" font-family="Arial, sans-serif" font-size="24" text-anchor="middle" fill="white" opacity="0.8">
+    Professional SMART Repair • Bath, England
+  </text>
+  
+  <!-- Contact info -->
+  <text x="600" y="450" font-family="Arial, sans-serif" font-size="20" text-anchor="middle" fill="white" opacity="0.7">
+    stuart@parkandpaint.co.uk • 07732 44 1000
+  </text>
+  
+  <!-- Decorative elements -->
+  <circle cx="200" cy="150" r="30" fill="white" opacity="0.1"/>
+  <circle cx="1000" cy="480" r="40" fill="white" opacity="0.1"/>
+  <circle cx="100" cy="400" r="20" fill="white" opacity="0.1"/>
+</svg>`;
+
+// Create Twitter image SVG (same but square)
+const twitterImageSvg = `<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="1200" viewBox="0 0 1200 1200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1200" height="1200" fill="#006DE0"/>
+  
+  <!-- Gradient overlay -->
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#006DE0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00224c;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="1200" fill="url(#grad)"/>
+  
+  <!-- Main content -->
+  <text x="600" y="400" font-family="Arial, sans-serif" font-size="96" font-weight="bold" text-anchor="middle" fill="white">
+    PARK AND PAINT
+  </text>
+  
+  <text x="600" y="520" font-family="Arial, sans-serif" font-size="48" text-anchor="middle" fill="white" opacity="0.9">
+    Car Paint Repair Services
+  </text>
+  
+  <text x="600" y="620" font-family="Arial, sans-serif" font-size="32" text-anchor="middle" fill="white" opacity="0.8">
+    Professional SMART Repair
+  </text>
+  
+  <text x="600" y="680" font-family="Arial, sans-serif" font-size="28" text-anchor="middle" fill="white" opacity="0.8">
+    Bath, England
+  </text>
+  
+  <!-- Contact info -->
+  <text x="600" y="800" font-family="Arial, sans-serif" font-size="24" text-anchor="middle" fill="white" opacity="0.7">
+    stuart@parkandpaint.co.uk
+  </text>
+  
+  <text x="600" y="850" font-family="Arial, sans-serif" font-size="24" text-anchor="middle" fill="white" opacity="0.7">
+    07732 44 1000
+  </text>
+  
+  <!-- Decorative elements -->
+  <circle cx="200" cy="200" r="50" fill="white" opacity="0.1"/>
+  <circle cx="1000" cy="1000" r="60" fill="white" opacity="0.1"/>
+  <circle cx="150" cy="900" r="30" fill="white" opacity="0.1"/>
+  <circle cx="1050" cy="150" r="40" fill="white" opacity="0.1"/>
+</svg>`;
+
+// Write SVG files
+fs.writeFileSync(path.join(__dirname, '..', 'public/images/og-image.svg'), ogImageSvg);
+fs.writeFileSync(path.join(__dirname, '..', 'public/images/twitter-image.svg'), twitterImageSvg);
+
+console.log('✅ Created OG and Twitter Card images as SVG files');
+console.log('📝 Note: For production, convert these to JPG/PNG using a tool like Inkscape or online converters');

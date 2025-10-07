@@ -5,6 +5,7 @@
 
 import L from 'leaflet';
 import { siteConfig } from '../config/site-config.js';
+import { announceToScreenReader } from '../utils/accessibility.js';
 
 // Fix for Leaflet marker icons (required when using Leaflet with bundlers)
 import markerIcon from 'leaflet/dist/images/marker-icon.png';
@@ -33,7 +34,6 @@ export function initializeMap() {
 
   // Initialize map using configuration
   const mapZoom = parseInt(import.meta.env.VITE_MAP_ZOOM || '11');
-  console.log('Map zoom level:', mapZoom);
   const map = L.map('mapContainer', {
     center: [siteConfig.map.centerLat, siteConfig.map.centerLng],
     zoom: mapZoom,
@@ -141,32 +141,4 @@ export function initializeMap() {
   setTimeout(() => {
     map.invalidateSize();
   }, 250);
-
-  console.log(`Map initialized successfully showing our location at ${siteConfig.address.full}`);
-}
-
-/**
- * Utility function to announce messages to screen readers
- * @param {string} message - The message to announce
- */
-function announceToScreenReader(message) {
-  // Check if announcement area already exists
-  let announcer = document.getElementById('screen-reader-announcer');
-
-  if (!announcer) {
-    // Create a visually hidden element for screen reader announcements
-    announcer = document.createElement('div');
-    announcer.id = 'screen-reader-announcer';
-    announcer.setAttribute('role', 'status');
-    announcer.setAttribute('aria-live', 'polite');
-    announcer.setAttribute('aria-atomic', 'true');
-    announcer.className = 'sr-only';
-    document.body.appendChild(announcer);
-  }
-
-  // Clear and set new message
-  announcer.textContent = '';
-  setTimeout(() => {
-    announcer.textContent = message;
-  }, 100);
 }

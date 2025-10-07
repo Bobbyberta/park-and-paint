@@ -7,9 +7,6 @@ import 'leaflet/dist/leaflet.css';
 // Import main styles
 import './styles/main.css';
 
-// Import site configuration
-import { siteConfig } from './config/site-config.js';
-
 // Import components
 import { initializeMap } from './components/map.js';
 import { initializeNavigation, initializeScrollNavigation } from './components/navigation.js';
@@ -19,7 +16,6 @@ import {
   initializeSmoothScrolling,
   initializeKeyboardNavigation,
   manageFocus,
-  announceToScreenReader,
 } from './utils/accessibility.js';
 import { initializeLazyLoading } from './utils/image-optimization.js';
 import { initializePerformanceMonitoring } from './utils/performance.js';

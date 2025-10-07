@@ -3,6 +3,9 @@
  * Provides performance tracking and optimization insights
  */
 
+// Only log in development
+const isDev = import.meta.env.DEV;
+
 /**
  * Measure Core Web Vitals
  */
@@ -12,7 +15,7 @@ export function measureCoreWebVitals() {
     const lcpObserver = new PerformanceObserver((list) => {
       const entries = list.getEntries();
       const lastEntry = entries[entries.length - 1];
-      console.log('LCP:', lastEntry.startTime);
+      if (isDev) console.log('LCP:', lastEntry.startTime);
 
       // Report to analytics if available
       if (window.gtag) {
@@ -31,7 +34,7 @@ export function measureCoreWebVitals() {
     const fidObserver = new PerformanceObserver((list) => {
       const entries = list.getEntries();
       entries.forEach((entry) => {
-        console.log('FID:', entry.processingStart - entry.startTime);
+        if (isDev) console.log('FID:', entry.processingStart - entry.startTime);
 
         if (window.gtag) {
           window.gtag('event', 'web_vitals', {
@@ -56,7 +59,7 @@ export function measureCoreWebVitals() {
         }
       });
 
-      console.log('CLS:', clsValue);
+      if (isDev) console.log('CLS:', clsValue);
 
       if (window.gtag) {
         window.gtag('event', 'web_vitals', {
@@ -88,7 +91,7 @@ export function measurePageLoad() {
         load: navigation.loadEventEnd - navigation.navigationStart,
       };
 
-      console.log('Page Load Metrics:', metrics);
+      if (isDev) console.log('Page Load Metrics:', metrics);
 
       // Report to analytics
       if (window.gtag) {
@@ -115,7 +118,7 @@ export function monitorResourcePerformance() {
 
       entries.forEach((entry) => {
         // Log slow resources (> 1 second)
-        if (entry.duration > 1000) {
+        if (entry.duration > 1000 && isDev) {
           console.warn('Slow resource detected:', {
             name: entry.name,
             duration: Math.round(entry.duration),
@@ -124,7 +127,7 @@ export function monitorResourcePerformance() {
         }
 
         // Log large resources (> 1MB)
-        if (entry.transferSize && entry.transferSize > 1024 * 1024) {
+        if (entry.transferSize && entry.transferSize > 1024 * 1024 && isDev) {
           console.warn('Large resource detected:', {
             name: entry.name,
             size: Math.round(entry.transferSize / 1024 / 1024) + 'MB',
@@ -143,21 +146,23 @@ export function monitorResourcePerformance() {
 export function initializePerformanceMonitoring() {
   // Only run in development or when explicitly enabled
   if (import.meta.env.DEV || import.meta.env.VITE_PERFORMANCE_MONITORING === 'true') {
-    console.log('🚀 Performance monitoring initialized');
+    if (isDev) console.log('🚀 Performance monitoring initialized');
 
     measureCoreWebVitals();
     measurePageLoad();
     monitorResourcePerformance();
 
     // Log performance tips
-    setTimeout(() => {
-      console.log('💡 Performance Tips:');
-      console.log('- Use WebP images for better compression');
-      console.log('- Implement lazy loading for images below the fold');
-      console.log('- Minimize JavaScript bundle size');
-      console.log('- Use CDN for static assets');
-      console.log('- Enable compression (gzip/brotli)');
-    }, 2000);
+    if (isDev) {
+      setTimeout(() => {
+        console.log('💡 Performance Tips:');
+        console.log('- Use WebP images for better compression');
+        console.log('- Implement lazy loading for images below the fold');
+        console.log('- Minimize JavaScript bundle size');
+        console.log('- Use CDN for static assets');
+        console.log('- Enable compression (gzip/brotli)');
+      }, 2000);
+    }
   }
 }
 

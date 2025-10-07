@@ -1,8 +1,14 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-# Run lint-staged to format and lint staged files
-npx lint-staged
+# Run linting
+npm run lint
 
-# Run build to ensure everything compiles
-npm run build
+# Run formatting
+npm run format
+
+# Check if there are any uncommitted changes after formatting
+if ! git diff --quiet; then
+  echo "❌ Code formatting has changed files. Please commit the formatted code."
+  exit 1
+fi

@@ -11,6 +11,7 @@
     "format": "prettier --write \"src/**/*.{js,css,html}\"",
     "optimize-images": "node scripts/optimize-images.js",
     "convert-webp": "node scripts/convert-to-webp.js",
+    "create-og-images": "node scripts/create-og-images.js",
     "analyze": "npm run optimize-images && npm run build",
     "bundle-analyze": "ANALYZE=true npm run build",
     "prepare": "husky install"
