@@ -97,17 +97,37 @@
 }
 
 .custom-popup .leaflet-popup-content-wrapper {
-  @apply bg-white text-gray-900;
+  @apply bg-white text-gray-900 border border-gray-200;
 }
 
 .custom-popup .leaflet-popup-tip {
-  @apply bg-white;
+  @apply bg-white border-gray-200;
+}
+
+/* Ensure Tailwind classes work properly in Leaflet popups */
+.custom-popup * {
+  @apply box-border;
+}
+
+.custom-popup a {
+  @apply no-underline;
+}
+
+.custom-popup button,
+.custom-popup .btn {
+  @apply cursor-pointer;
 }
 
 /* Ensure map container has proper sizing */
 #map {
   min-height: 400px;
   z-index: 1;
+}
+
+/* Grayscale map tiles */
+.grayscale-map {
+  filter: grayscale(100%);
+  -webkit-filter: grayscale(100%);
 }
 
 /* Smooth transitions for interactive elements */

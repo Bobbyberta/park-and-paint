@@ -32,19 +32,24 @@ export function initializeMap() {
   }
 
   // Initialize map using configuration
+  const mapZoom = parseInt(import.meta.env.VITE_MAP_ZOOM || '11');
+  console.log('Map zoom level:', mapZoom);
   const map = L.map('mapContainer', {
     center: [siteConfig.map.centerLat, siteConfig.map.centerLng],
-    zoom: siteConfig.map.zoom,
+    zoom: mapZoom,
     scrollWheelZoom: false,
     attributionControl: true,
   });
 
-  // Add OpenStreetMap tile layer
+  // Add grayscale OpenStreetMap tile layer
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution:
       '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     maxZoom: 19,
     minZoom: 3,
+    className: 'grayscale-map',
+    // Add cache busting to ensure fresh tiles
+    version: '1.0.0',
   }).addTo(map);
 
   // Our location using configuration
@@ -61,23 +66,30 @@ export function initializeMap() {
     .addTo(map)
     .bindPopup(
       `
-      <div class="p-2">
-        <h3 class="font-bold text-lg mb-2">${location.name}</h3>
-        <p class="text-sm mb-2">${location.address}</p>
-        <p class="text-sm mb-2">${location.description}</p>
-        <p class="text-sm">
-          <strong>Phone:</strong> 
-          <a href="tel:${location.phone.replace(/\s/g, '')}" class="text-primary-600 hover:underline">
-            ${location.phone}
-          </a>
-        </p>
+      <div class="p-3">
+        <p class="text-sm text-gray-700 mb-3">${location.address}</p>
+        <a 
+          href="https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(siteConfig.address.full)}" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          style="display: inline-flex; align-items: center; justify-content: center; width: 100%; padding: 8px 12px; background-color: #006DE0; color: white; font-size: 14px; font-weight: 500; border-radius: 8px; text-decoration: none; transition: background-color 200ms;"
+          onmouseover="this.style.backgroundColor='#0056b3'"
+          onmouseout="this.style.backgroundColor='#006DE0'"
+          aria-label="Get directions to ${location.name} on Google Maps"
+        >
+          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
+          </svg>
+          Get Directions
+        </a>
       </div>
     `,
       {
-        maxWidth: 300,
+        maxWidth: 280,
         className: 'custom-popup',
       }
-    );
+    )
+    .openPopup();
 
   // Add accessibility: announce when marker is clicked
   marker.on('click', () => {
@@ -108,7 +120,7 @@ export function initializeMap() {
       container.setAttribute('aria-label', 'Reset map to default view');
 
       container.onclick = function () {
-        map.setView([siteConfig.map.centerLat, siteConfig.map.centerLng], siteConfig.map.zoom);
+        map.setView([siteConfig.map.centerLat, siteConfig.map.centerLng], mapZoom);
         announceToScreenReader(
           `Map view reset to show our location at ${siteConfig.address.street}`
         );
