@@ -235,7 +235,11 @@ This is a proprietary project owned by Park & Paint. All rights reserved.
 
 ## 📝 License
 
-This project is proprietary and confidential to Park & Paint. All rights reserved. See the LICENSE file for details.
+This project is proprietary and confidential to Park & Paint. All rights reserved. 
+
+**License**: SEE LICENSE IN LICENSE file
+
+For permissions and licensing inquiries, contact: stuart@parkandpaint.co.uk
 
 ## 🆘 Support
 
