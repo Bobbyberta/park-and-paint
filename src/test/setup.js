@@ -147,6 +147,7 @@ global.testUtils = {
   mockConsole: () => {
     const originalConsole = { ...console };
     Object.keys(console).forEach((key) => {
+      // eslint-disable-next-line no-console
       console[key] = vi.fn();
     });
     return () => {
