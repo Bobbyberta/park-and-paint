@@ -1,11 +1,17 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
+# Clean test artifacts before committing
+npm run test:clean-results
+
 # Run linting
 npm run lint
 
 # Run formatting
 npm run format
+
+# Run unit tests
+npm run test:run
 
 # Check if there are any uncommitted changes after formatting
 if ! git diff --quiet; then

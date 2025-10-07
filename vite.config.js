@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import { visualizer } from 'rollup-plugin-visualizer';
+/// <reference types="vitest" />
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -34,6 +35,9 @@ export default defineConfig({
       }
     }
   },
+
+  // Asset handling
+  assetsInclude: ['**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.gif', '**/*.svg'],
   
   // Development server configuration
   server: {
@@ -56,6 +60,28 @@ export default defineConfig({
     }
   },
   
+  // Test configuration
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: ['./src/test/setup.js'],
+    include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
+    exclude: ['node_modules', 'dist', '.git', '.cache'],
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'json', 'html'],
+      exclude: [
+        'node_modules/',
+        'src/test/',
+        '**/*.d.ts',
+        '**/*.config.js',
+        '**/dist/**',
+      ],
+    },
+    // Handle asset imports in tests
+    assetsInclude: ['**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.gif', '**/*.svg'],
+  },
+
   // Plugins
   plugins: [
     // Bundle analyzer - only run when ANALYZE=true

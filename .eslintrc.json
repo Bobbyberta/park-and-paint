@@ -2,11 +2,13 @@
   "env": {
     "browser": true,
     "es2021": true,
-    "node": true
+    "node": true,
+    "vitest-globals/env": true
   },
   "extends": [
     "eslint:recommended",
-    "prettier"
+    "prettier",
+    "plugin:vitest-globals/recommended"
   ],
   "parserOptions": {
     "ecmaVersion": "latest",

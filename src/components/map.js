@@ -20,6 +20,17 @@ L.Icon.Default.mergeOptions({
   shadowUrl: markerShadow,
 });
 
+// Store timeout IDs for cleanup
+let timeoutIds = [];
+
+/**
+ * Clean up timeouts (useful for testing)
+ */
+export function cleanupMapTimeouts() {
+  timeoutIds.forEach((id) => clearTimeout(id));
+  timeoutIds = [];
+}
+
 /**
  * Initialize Leaflet map with markers
  * Displays service locations across the UK
@@ -77,7 +88,7 @@ export function initializeMap() {
           onmouseout="this.style.backgroundColor='#006DE0'"
           aria-label="Get directions to ${location.name} on Google Maps"
         >
-          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-label="Map directions icon">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
           </svg>
           Get Directions
@@ -138,7 +149,111 @@ export function initializeMap() {
   });
 
   // Ensure map renders correctly after any animations
-  setTimeout(() => {
+  const timeoutId1 = setTimeout(() => {
     map.invalidateSize();
+
+    // Add accessibility attributes to Leaflet-generated images
+    addAccessibilityToLeafletImages();
+
+    // Set up observer for dynamically added images
+    setupImageAccessibilityObserver();
+
+    // Also run accessibility fix after a longer delay to catch late-loading images
+    const timeoutId2 = setTimeout(() => {
+      addAccessibilityToLeafletImages();
+    }, 1000);
+    timeoutIds.push(timeoutId2);
   }, 250);
+  timeoutIds.push(timeoutId1);
+}
+
+/**
+ * Add accessibility attributes to Leaflet-generated images
+ */
+function addAccessibilityToLeafletImages() {
+  // Add alt text to ALL images in the map container that don't have alt text
+  const mapContainer = document.getElementById('mapContainer');
+  if (!mapContainer) return;
+
+  const allImages = mapContainer.querySelectorAll('img');
+  allImages.forEach((img) => {
+    if (!img.getAttribute('alt')) {
+      addAltToImage(img);
+    }
+  });
+
+  // Also check for images outside the map container that might be related
+  const leafletImages = document.querySelectorAll(
+    '.leaflet-marker-icon, .leaflet-control img, .leaflet-control-attribution img'
+  );
+  leafletImages.forEach((img) => {
+    if (!img.getAttribute('alt')) {
+      addAltToImage(img);
+    }
+  });
+}
+
+/**
+ * Set up MutationObserver to handle dynamically added images
+ */
+function setupImageAccessibilityObserver() {
+  const mapContainer = document.getElementById('mapContainer');
+  if (!mapContainer) return;
+
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.type === 'childList') {
+        mutation.addedNodes.forEach((node) => {
+          if (node.nodeType === Node.ELEMENT_NODE) {
+            // Check if the added node is an image
+            if (node.tagName === 'IMG' && !node.getAttribute('alt')) {
+              addAltToImage(node);
+            }
+
+            // Check for images within the added node
+            const images = node.querySelectorAll ? node.querySelectorAll('img') : [];
+            images.forEach((img) => {
+              if (!img.getAttribute('alt')) {
+                addAltToImage(img);
+              }
+            });
+          }
+        });
+      }
+    });
+  });
+
+  observer.observe(mapContainer, {
+    childList: true,
+    subtree: true,
+  });
+}
+
+/**
+ * Add appropriate alt text to an image based on its context
+ */
+function addAltToImage(img) {
+  const parentButton = img.closest('button');
+  const parentLink = img.closest('a');
+
+  if (parentButton) {
+    const buttonTitle =
+      parentButton.getAttribute('title') || parentButton.getAttribute('aria-label');
+    if (buttonTitle) {
+      img.setAttribute('alt', buttonTitle);
+    } else {
+      img.setAttribute('alt', 'Map control icon');
+    }
+  } else if (parentLink) {
+    const linkText = parentLink.textContent.trim();
+    if (linkText) {
+      img.setAttribute('alt', `${linkText} logo`);
+    } else {
+      img.setAttribute('alt', 'Map attribution logo');
+    }
+  } else if (img.classList.contains('leaflet-marker-icon')) {
+    img.setAttribute('alt', 'Map marker - Park and Paint location');
+  } else {
+    img.setAttribute('alt', 'Map icon');
+  }
 }
