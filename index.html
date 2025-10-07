@@ -240,6 +240,7 @@
         x-transition:leave="transition ease-in duration-150"
         x-transition:leave-start="opacity-100 transform translate-y-0"
         x-transition:leave-end="opacity-0 transform -translate-y-2"
+        @click.away="mobileMenuOpen = false"
         class="md:hidden mt-4 pb-4"
         x-cloak
       >
