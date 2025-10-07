@@ -1,0 +1,72 @@
+---
+alwaysApply: true
+---
+
+# Technology Stack Rules
+
+## Core Technologies
+- **Vite** - Build tool and development server (v5.0.0+)
+- **Tailwind CSS** - Utility-first CSS framework (v3.4.0+)
+- **Alpine.js** - Lightweight JavaScript framework for interactivity (v3.13.0+)
+- **Leaflet.js** - Open-source mapping library (v1.9.4+)
+- **Node.js** - Runtime environment (v18+ required, v20 recommended)
+
+## Development Dependencies
+- **ESLint** - Code linting and quality enforcement
+- **Prettier** - Code formatting and style consistency
+- **PostCSS** - CSS processing and optimization
+- **Autoprefixer** - Automatic vendor prefixing
+
+## Dependency Management
+- Use `npm` as package manager (lock file: `package-lock.json`)
+- Pin major versions in `package.json` (e.g., `^5.0.0`)
+- Regular dependency updates: `npm outdated` → `npm update`
+- Security audits: `npm audit` → `npm audit fix`
+- Use `npm ci` for production builds (faster, more reliable)
+
+## Version Compatibility
+- Node.js: Minimum v18, Recommended v20 LTS
+- Modern browsers: Chrome 90+, Firefox 88+, Safari 14+, Edge 90+
+- Mobile browsers: iOS Safari 14+, Chrome Mobile 90+
+- Progressive enhancement for older browsers
+
+## Build Process
+- Development: `npm run dev` (Vite dev server on port 3000)
+- Production: `npm run build` (outputs to `dist/` directory)
+- Preview: `npm run preview` (test production build locally)
+- Linting: `npm run lint` (ESLint with auto-fix)
+- Formatting: `npm run format` (Prettier code formatting)
+
+## External Dependencies
+- **Google Fonts** - Montserrat, Lato, Open Sans (preloaded)
+- **OpenStreetMap** - Tile server for Leaflet maps
+- **CDN Resources** - Leaflet CSS from unpkg.com
+- **GitHub Pages** - Hosting and deployment platform
+
+## Performance Considerations
+- Bundle splitting: Separate chunks for Leaflet and Alpine.js
+- Asset optimization: Inline assets under 4KB
+- Image optimization: Use WebP format when possible
+- Font loading: Preconnect to Google Fonts domains
+- Map loading: Lazy load Leaflet until needed
+
+## Security Standards
+- Use HTTPS for all external resources
+- Validate and sanitize any user input
+- Keep dependencies updated for security patches
+- Use Content Security Policy headers
+- Avoid inline scripts and styles where possible
+
+## Browser Support Strategy
+- Progressive enhancement approach
+- Core functionality works without JavaScript
+- Alpine.js provides enhanced interactivity
+- Graceful degradation for older browsers
+- Mobile-first responsive design
+
+## Development Workflow
+- Local development with hot reload
+- Automated testing with ESLint and Prettier
+- Git hooks for pre-commit validation
+- Continuous deployment via GitHub Actions
+- Performance monitoring with Lighthouse

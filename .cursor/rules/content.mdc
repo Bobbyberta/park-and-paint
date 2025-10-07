@@ -1,0 +1,57 @@
+---
+alwaysApply: true
+---
+
+# Content Rules
+
+## SEO Optimization
+- Include comprehensive meta tags: title, description, keywords, robots, canonical URL
+- Use structured data (Schema.org) for LocalBusiness markup
+- Implement Open Graph and Twitter Card meta tags for social sharing
+- Maintain consistent URL structure and avoid duplicate content
+- Include alt text for all images with descriptive, keyword-rich content
+
+## Brand Voice & Messaging
+- Use professional, trustworthy tone throughout all content
+- Emphasize quality, reliability, and customer service
+- Include specific service details: "SMART repair", "mobile car paint repair"
+- Highlight local expertise: "Bath and surrounding areas"
+- Use action-oriented language: "FIXING DENTS, SCUFFS AND SCRATCHES"
+
+## Contact Information Standards
+- Primary contact: stuart@parkandpaint.co.uk, 07732 44 1000
+- Address format: "7 Ferry Court, Bath, England, United Kingdom, BA2 4JW"
+- Include clickable phone and email links with proper href attributes
+- Maintain consistent formatting across all contact references
+
+## Content Structure
+- Use clear heading hierarchy: H1 for main page title, H2 for sections
+- Include descriptive section IDs for navigation: `#home`, `#services`, `#contact`
+- Provide skip-to-content links for accessibility
+- Use semantic HTML elements: `<main>`, `<section>`, `<header>`, `<footer>`
+
+## Service Descriptions
+- Lead with customer benefits: "keep your vehicle looking smart and scratch free"
+- Include guarantee information: "lifetime guarantee for as long as you own the vehicle"
+- Specify service areas and coverage
+- Mention professional qualifications and experience
+
+## Accessibility Content Requirements
+- Provide descriptive alt text for all images
+- Include ARIA labels for interactive elements
+- Use semantic HTML structure for screen readers
+- Ensure keyboard navigation works for all interactive elements
+- Include screen reader announcements for dynamic content
+
+## Legal & Compliance
+- Include copyright notice: "© 2025 by Park and Paint"
+- Maintain privacy policy and terms of service links
+- Ensure GDPR compliance for any data collection
+- Include proper licensing information for third-party content
+
+## Content Updates
+- Keep opening hours current and accurate
+- Update contact information immediately when changed
+- Maintain fresh, relevant service descriptions
+- Regular review of SEO meta tags and descriptions
+- Update structured data when business details change

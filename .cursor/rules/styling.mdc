@@ -1,0 +1,53 @@
+---
+alwaysApply: true
+---
+
+# Styling Rules
+
+## Tailwind CSS Guidelines
+- Use Tailwind utility classes exclusively - no custom CSS unless absolutely necessary
+- Follow mobile-first responsive design: `sm:`, `md:`, `lg:`, `xl:` breakpoints
+- Use semantic color names from `tailwind.config.js`: `primary-*`, `gray-*`, `dark-*`
+- Apply consistent spacing using Tailwind's spacing scale: `p-4`, `m-8`, `space-y-6`
+
+## Typography Standards
+- Use Barlow font for all headings and subheadings: `font-barlow`
+- Main headings use bold weight: `font-bold` (700)
+- Subheadings use regular weight: `font-normal` (400)
+- Apply custom font sizes: `text-heading-1` through `text-heading-6`, `text-body-large`
+- Note: `text-heading-6` uses light weight (300) to match body text consistency
+- Use `leading-relaxed` for body text readability
+- Body text uses Work Sans (default sans-serif)
+- Logo uses `.logo` class with Barlow bold (700) and `!important` declaration
+
+## Color Palette
+- Main brand color: `brand-4` (#006DE0) for header and services section
+- Brand color variations: `brand-1` through `brand-5` for different UI elements
+- Custom grays: `custom-gray-light`, `custom-gray-medium`, `custom-gray-dark`, `custom-gray-darker`
+- Custom blues: `custom-blue-light`, `custom-blue-medium`, `custom-blue-dark`, `custom-blue-brand`, `custom-blue-navy`
+- Text hierarchy: `text-gray-950` (dark), `text-gray-600` (medium), `text-white` (light backgrounds)
+- Backgrounds: `bg-gray-50` (light), `bg-gray-800` (dark sections), `bg-brand-4` (main brand)
+- Interactive states: `hover:text-gray-200`, `hover:bg-brand-5`
+
+## Layout Patterns
+- Use `container mx-auto px-4` for consistent page width and padding
+- Apply `max-w-*` constraints: `max-w-4xl`, `max-w-2xl` for content sections
+- Use flexbox utilities: `flex`, `items-center`, `justify-between` for alignment
+- Apply consistent section spacing: `py-20` for major sections, `py-8` for smaller
+- Mobile burger menu button: `w-15 h-15` (60px) with `p-4` padding for accessibility
+
+## Accessibility Requirements
+- Ensure minimum 4.5:1 color contrast ratio for text
+- Main brand color (#006DE0) provides excellent accessibility rating
+- Use `sr-only` class for screen reader only content
+- Apply `focus:ring-2 focus:ring-primary-500` for focus indicators
+- Include `aria-label` attributes for interactive elements without visible text
+- Mobile touch targets minimum 60px (w-15 h-15) for burger menu
+
+## Performance Considerations
+- Use `antialiased` class on body for better font rendering
+- Apply `transition-colors` for smooth hover effects
+- Optimize images with appropriate `object-cover` and sizing
+- Use CSS custom properties sparingly - prefer Tailwind utilities
+- Google Fonts loaded with `display=swap` for optimal performance
+- Font preconnect links in HTML head for faster font loading

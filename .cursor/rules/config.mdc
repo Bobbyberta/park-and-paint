@@ -1,0 +1,76 @@
+---
+alwaysApply: true
+---
+
+# Configuration Files Rules
+
+## Vite Configuration (`vite.config.js`)
+- Set `base: '/'` for root deployment or custom domain
+- Configure `outDir: 'dist'` for build output
+- Enable `minify: 'terser'` for production optimization
+- Set `assetsInlineLimit: 4096` for small asset inlining
+- Use manual chunk splitting for Leaflet and Alpine.js
+- Configure dev server on port 3000 with auto-open
+
+## Tailwind Configuration (`tailwind.config.js`)
+- Define custom color palette: `primary-*`, `gray-*`, `dark-*`
+- Set custom font families: `raleway`, `barlow`
+- Configure custom font sizes: `heading-1` through `heading-6`
+- Enable `darkMode: 'class'` for Alpine.js integration
+- Include content paths: `./index.html`, `./src/**/*.{js,html}`
+- Set custom spacing and max-width values
+
+## Package.json Standards
+- Use `"type": "module"` for ES6 modules
+- Define clear scripts: `dev`, `build`, `preview`, `lint`, `format`
+- Pin dependency versions with caret ranges: `^5.0.0`
+- Include proper keywords and description
+- Set MIT license for open source compatibility
+
+## PostCSS Configuration (`postcss.config.js`)
+- Include Tailwind CSS plugin
+- Enable Autoprefixer for vendor prefixes
+- Configure for modern browser support
+- Optimize CSS output for production
+
+## ESLint Configuration
+- Extend Prettier configuration to avoid conflicts
+- Use Prettier plugin for formatting integration
+- Apply consistent code style across JavaScript files
+- Enable auto-fix for common issues
+- Target modern ES6+ syntax
+
+## Build Process Rules
+- Use `npm run build` for production builds
+- Generate sourcemaps only in development
+- Optimize assets and bundle JavaScript
+- Create separate chunks for better caching
+- Validate build output before deployment
+
+## Environment Configuration
+- Use environment variables for sensitive data
+- Configure different settings for dev/prod
+- Set proper base URLs for different environments
+- Handle API endpoints and external services
+- Maintain consistent configuration across environments
+
+## Asset Optimization
+- Inline small assets (< 4KB) for performance
+- Use appropriate image formats (WebP preferred)
+- Compress and optimize all static assets
+- Implement proper caching headers
+- Minimize bundle size with tree shaking
+
+## Deployment Configuration
+- Configure GitHub Pages deployment
+- Set proper build output directory
+- Handle custom domain configuration
+- Set up proper redirects and routing
+- Configure CDN and caching strategies
+
+## Development Server Rules
+- Use Vite dev server for local development
+- Enable hot module replacement
+- Configure proper port and host settings
+- Set up proxy for API calls if needed
+- Enable source maps for debugging

@@ -1,0 +1,164 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700&family=Work+Sans:wght@300;400;500;600&display=swap');
+
+/* Tailwind base styles */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base layer customizations */
+@layer base {
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Font family declarations */
+  body {
+    font-family: 'Work Sans', sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Barlow', sans-serif;
+  }
+
+  /* Focus visible styles for accessibility */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-primary-500 ring-offset-2;
+  }
+
+  /* Ensure proper spacing for content sections */
+  section {
+    scroll-margin-top: 80px; /* Account for fixed header */
+  }
+}
+
+/* Component layer for essential components only */
+@layer components {
+  /* Logo styling */
+  .logo {
+    font-family: 'Barlow', sans-serif !important;
+    font-weight: 700;
+  }
+
+  /* Screen reader only content (for accessibility) */
+  .sr-only {
+    @apply absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap border-0;
+    clip: rect(0, 0, 0, 0);
+  }
+
+  .sr-only:focus {
+    @apply static w-auto h-auto p-0 m-0 overflow-visible whitespace-normal;
+    clip: auto;
+  }
+}
+
+/* Utility layer for custom utilities */
+@layer utilities {
+  /* Custom animation utilities */
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Loading animation */
+  .spinner {
+    @apply border-3 border-gray-200 border-t-primary-600 w-10 h-10 rounded-full animate-spin;
+  }
+}
+
+/* Alpine.js cloak (hide elements until Alpine initializes) */
+[x-cloak] {
+  display: none !important;
+}
+
+/* Leaflet map custom styles */
+.leaflet-popup-content-wrapper {
+  @apply rounded-lg shadow-lg;
+}
+
+.leaflet-popup-content {
+  @apply m-0;
+}
+
+.custom-popup .leaflet-popup-content-wrapper {
+  @apply bg-white text-gray-900;
+}
+
+.custom-popup .leaflet-popup-tip {
+  @apply bg-white;
+}
+
+/* Ensure map container has proper sizing */
+#map {
+  min-height: 400px;
+  z-index: 1;
+}
+
+/* Smooth transitions for interactive elements */
+* {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+}
+
+/* Print styles */
+@media print {
+  /* Hide navigation and non-essential elements when printing */
+  header,
+  footer,
+  #map,
+  button,
+  .no-print {
+    display: none !important;
+  }
+
+  /* Ensure content is readable */
+  body {
+    @apply text-black bg-white;
+  }
+
+  /* Show URLs for links */
+  a[href]:after {
+    content: ' (' attr(href) ')';
+  }
+}
+
+/* Accessibility: Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .card {
+    @apply border-2 border-gray-900;
+  }
+
+  button,
+  a {
+    @apply underline;
+  }
+}

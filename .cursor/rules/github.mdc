@@ -1,0 +1,69 @@
+---
+alwaysApply: true
+---
+
+# GitHub Rules
+
+## Repository Management
+- Use `main` branch as primary development branch
+- Enable branch protection rules for main branch
+- Require pull request reviews before merging to main
+- Use conventional commit messages: `feat:`, `fix:`, `docs:`, `style:`, `refactor:`
+- Keep repository public for GitHub Pages deployment
+
+## GitHub Pages Deployment
+- Use GitHub Actions workflow for automated deployment
+- Deploy from `dist/` directory after Vite build process
+- Enable GitHub Pages with "GitHub Actions" source
+- Set custom domain: `www.parkandpaint.co.uk` via CNAME file
+- Configure DNS: CNAME record pointing to `username.github.io`
+
+## Workflow Configuration
+- Use Node.js 20 for consistent build environment
+- Cache npm dependencies for faster builds
+- Run on `push` to main branch and manual `workflow_dispatch`
+- Set proper permissions: `contents: read`, `pages: write`, `id-token: write`
+- Allow only one concurrent deployment to prevent conflicts
+
+## Issue & PR Management
+- Use issue templates for bug reports and feature requests
+- Label issues appropriately: `bug`, `enhancement`, `documentation`
+- Link PRs to related issues using `Fixes #123` or `Closes #123`
+- Require PR descriptions explaining changes and testing
+- Use draft PRs for work-in-progress features
+
+## Security & Access
+- Enable dependency security alerts
+- Use GitHub's secret scanning for sensitive data
+- Limit repository access to necessary collaborators
+- Enable two-factor authentication for all contributors
+- Regular security updates for dependencies
+
+## Dependabot Configuration
+- Use `.github/dependabot.yml` for automated dependency updates
+- Schedule weekly updates on Mondays at 9:00 AM London time
+- Group minor and patch updates together to reduce PR noise
+- Assign security-related PRs to repository maintainer
+- Use conventional commit prefixes: `deps:` for npm, `ci:` for GitHub Actions
+- Limit open PRs: 10 for npm dependencies, 5 for GitHub Actions
+- Apply appropriate labels: `dependencies`, `security`, `github-actions`
+
+## Documentation Standards
+- Maintain comprehensive README.md with setup instructions
+- Keep QUICKSTART.md updated with current deployment steps
+- Document all environment variables and configuration
+- Include troubleshooting guides for common issues
+- Maintain CHANGELOG.md for version tracking
+
+## Branch Strategy
+- Feature branches: `feature/description` (e.g., `feature/contact-form`)
+- Bug fixes: `fix/description` (e.g., `fix/mobile-menu`)
+- Hotfixes: `hotfix/critical-issue`
+- Delete merged branches to keep repository clean
+- Use descriptive branch names that explain the purpose
+
+## Release Management
+- Tag releases with semantic versioning: `v1.0.0`, `v1.1.0`
+- Create release notes describing changes and improvements
+- Test deployment on staging before production release
+- Monitor deployment status and rollback if necessary

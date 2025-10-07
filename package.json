@@ -1,0 +1,56 @@
+{
+  "name": "parkandpaint",
+  "version": "1.0.0",
+  "description": "Park & Paint - Mobile-first, accessible website for parking and painting services",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint src --fix",
+    "format": "prettier --write \"src/**/*.{js,css,html}\"",
+    "optimize-images": "node scripts/optimize-images.js",
+    "convert-webp": "node scripts/convert-to-webp.js",
+    "analyze": "npm run optimize-images && npm run build",
+    "bundle-analyze": "ANALYZE=true npm run build",
+    "prepare": "husky install"
+  },
+  "keywords": [
+    "parking",
+    "painting",
+    "services",
+    "static-site"
+  ],
+  "author": "",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@vite-pwa/assets-generator": "^1.0.1",
+    "autoprefixer": "^10.4.0",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.3",
+    "postcss": "^8.4.0",
+    "prettier": "^3.2.0",
+    "rollup-plugin-visualizer": "^6.0.4",
+    "sharp": "^0.34.4",
+    "tailwindcss": "^3.4.0",
+    "terser": "^5.44.0",
+    "vite": "^5.0.0",
+    "vite-plugin-bundle-analyzer": "^0.0.1"
+  },
+  "dependencies": {
+    "alpinejs": "^3.13.0",
+    "leaflet": "^1.9.4"
+  },
+  "lint-staged": {
+    "*.{js,css,html}": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "*.{css,html}": [
+      "prettier --write"
+    ]
+  }
+}
