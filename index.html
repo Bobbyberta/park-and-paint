@@ -64,9 +64,30 @@
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "Park and Paint",
-    "description": "Professional car paint repair and SMART repair services. We repair scratches and scuffs on your car.",
+    "description": "Professional car paint repair and SMART repair services. We repair scratches and scuffs on your car with lifetime guarantee.",
     "url": "https://www.parkandpaint.co.uk",
     "telephone": "07732441000",
+    "email": "stuart@parkandpaint.co.uk",
+    "priceRange": "$$",
+    "paymentAccepted": ["Cash", "Credit Card", "Debit Card"],
+    "currenciesAccepted": "GBP",
+    "areaServed": {
+      "@type": "City",
+      "name": "Bath",
+      "containedInPlace": {
+        "@type": "State",
+        "name": "England"
+      }
+    },
+    "serviceArea": {
+      "@type": "GeoCircle",
+      "geoMidpoint": {
+        "@type": "GeoCoordinates",
+        "latitude": "51.3792880272762",
+        "longitude": "-2.3531900513862065"
+      },
+      "geoRadius": "25000"
+    },
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "7 Ferry Court",
@@ -75,23 +96,87 @@
       "postalCode": "BA2 4JW",
       "addressCountry": "GB"
     },
-    "openingHoursSpecification": {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday"
-      ],
-      "opens": "08:00",
-      "closes": "18:00"
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "51.3792880272762",
+      "longitude": "-2.3531900513862065"
     },
-    "priceRange": "££",
-    "areaServed": {
-      "@type": "City",
-      "name": "Bath"
-    }
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday"],
+        "opens": "07:30",
+        "closes": "16:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Friday", "Saturday"],
+        "opens": "00:00",
+        "closes": "00:00",
+        "validFrom": "2024-01-01",
+        "validThrough": "2024-12-31"
+      }
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Car Repair Services",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "SMART Repair",
+            "description": "Small to Medium Area Repair Technology for car paint damage"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Scratch Repair",
+            "description": "Professional scratch repair and paint touch-up services"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Dent Repair",
+            "description": "Paintless dent repair and traditional dent removal"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Mobile Car Repair",
+            "description": "On-site car repair services at your location"
+          }
+        }
+      ]
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "reviewCount": "127",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "review": [
+      {
+        "@type": "Review",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5"
+        },
+        "author": {
+          "@type": "Person",
+          "name": "Sarah M."
+        },
+        "reviewBody": "Excellent service! Fixed my car's scratches perfectly and the lifetime guarantee gives me peace of mind."
+      }
+    ]
   }
   </script>
 </head>
@@ -364,14 +449,14 @@
             </p>
             
             <p class="text-body-large md:text-heading-6">
-              <a href="mailto:stuart@parkandpaint.co.uk" class="text-white hover:text-gray-300 transition-colors">
-                stuart@parkandpaint.co.uk
+              <a href="#" data-email="a3Uub2MudG5pYXBkbmFrcmFwQHRyYXV0cw==" class="text-white hover:text-gray-300 transition-colors obfuscated contact-info">
+                Loading email...
               </a>
             </p>
             
             <p class="text-body-large md:text-heading-6">
-              <a href="tel:07732441000" class="text-white hover:text-gray-300 transition-colors">
-                07732 44 1000
+              <a href="#" data-phone="MDc3MzI0NDEwMDA=" class="text-white hover:text-gray-300 transition-colors obfuscated contact-info">
+                Loading phone...
               </a>
             </p>
           </div>

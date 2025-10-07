@@ -19,6 +19,9 @@ export const siteConfig = {
     email: import.meta.env.VITE_CONTACT_EMAIL || 'stuart@parkandpaint.co.uk',
     phone: import.meta.env.VITE_PHONE_NUMBER || '07732441000',
     phoneDisplay: import.meta.env.VITE_PHONE_DISPLAY || '07732 44 1000',
+    // Obfuscated versions for security
+    emailObfuscated: 'a3Uub2MudG5pYXBkbmFrcmFwQHRyYXV0cw==',
+    phoneObfuscated: 'MDc3MzI0NDEwMDA=',
   },
 
   // Business Address

@@ -23,6 +23,10 @@ import {
 } from './utils/accessibility.js';
 import { initializeLazyLoading } from './utils/image-optimization.js';
 import { initializePerformanceMonitoring } from './utils/performance.js';
+import { 
+  initializeContactProtection, 
+  hideContactFromBots 
+} from './utils/contact-security.js';
 
 // Initialize Alpine.js
 window.Alpine = Alpine;
@@ -47,33 +51,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize performance monitoring (development only)
   initializePerformanceMonitoring();
+
+  // Initialize contact protection
+  initializeContactProtection();
+  hideContactFromBots();
 });
 
-// Handle form submission (placeholder - replace with actual form handling)
-document.addEventListener('DOMContentLoaded', () => {
-  const contactForm = document.querySelector('form[aria-label="Contact form"]');
-
-  if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-
-      // Get form data
-      const formData = new FormData(contactForm);
-      const data = Object.fromEntries(formData);
-
-      // TODO: Replace with actual form submission logic
-      // For now, just log and show an alert
-      console.log('Form submitted:', data);
-
-      alert(
-        'Thank you for your message! We will get back to you soon.\n\n(Note: This is a demo. Connect to a real form handler to enable submissions.)'
-      );
-
-      // Reset form
-      contactForm.reset();
-
-      // Announce to screen readers
-      announceToScreenReader('Form submitted successfully. We will contact you soon.');
-    });
-  }
-});
+// Contact form handling is now managed by contact-form.js component
