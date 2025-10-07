@@ -23,10 +23,6 @@ import {
 } from './utils/accessibility.js';
 import { initializeLazyLoading } from './utils/image-optimization.js';
 import { initializePerformanceMonitoring } from './utils/performance.js';
-import { 
-  initializeContactProtection, 
-  hideContactFromBots 
-} from './utils/contact-security.js';
 
 // Initialize Alpine.js
 window.Alpine = Alpine;
@@ -51,10 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize performance monitoring (development only)
   initializePerformanceMonitoring();
-
-  // Initialize contact protection
-  initializeContactProtection();
-  hideContactFromBots();
 });
 
 // Contact form handling is now managed by contact-form.js component
