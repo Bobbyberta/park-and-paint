@@ -39,7 +39,7 @@ export const siteConfig = {
   map: {
     centerLat: parseFloat(import.meta.env.VITE_MAP_CENTER_LAT || '51.3792880272762'),
     centerLng: parseFloat(import.meta.env.VITE_MAP_CENTER_LNG || '-2.3531900513862065'),
-    zoom: parseInt(import.meta.env.VITE_MAP_ZOOM || '13'),
+    zoom: parseInt(import.meta.env.VITE_MAP_ZOOM || '11'),
   },
 
   // Business Hours

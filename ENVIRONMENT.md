@@ -35,7 +35,7 @@ This document describes the environment variables available for configuring the 
 ### Map Configuration
 - `VITE_MAP_CENTER_LAT` - Latitude for map center (default: 51.3792880272762)
 - `VITE_MAP_CENTER_LNG` - Longitude for map center (default: -2.3531900513862065)
-- `VITE_MAP_ZOOM` - Default map zoom level (default: 15)
+- `VITE_MAP_ZOOM` - Default map zoom level (default: 11)
 
 ### Business Hours
 - `VITE_HOURS_MONDAY_THURSDAY` - Monday-Thursday hours (default: 7:30 AM - 4:00 PM)

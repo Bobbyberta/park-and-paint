@@ -1,500 +1,560 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <!-- Primary Meta Tags -->
-  <title>Car Paint Repair | Park and Paint | Bath | England</title>
-  <meta name="title" content="Car Paint Repair | Park and Paint | Bath | England">
-  <meta name="description" content="Park and Paint repairs the scratches and scuffs on your car. Professional SMART repair services in Bath, England. Mobile car paint repair at your convenience.">
-  <meta name="keywords" content="car paint repair, scratch repair, SMART repair, mobile car repair, Bath, car body repair, scuff repair">
-  <meta name="robots" content="index, follow">
-  <meta name="language" content="English">
-  <meta name="author" content="Park and Paint">
-  
-  <!-- Additional SEO Meta Tags -->
-  <meta name="geo.region" content="GB-ENG">
-  <meta name="geo.placename" content="Bath">
-  <meta name="geo.position" content="51.3792880272762;-2.3531900513862065">
-  <meta name="ICBM" content="51.3792880272762, -2.3531900513862065">
-  <meta name="theme-color" content="#006DE0">
-  <meta name="msapplication-TileColor" content="#006DE0">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="apple-mobile-web-app-title" content="Park and Paint">
-  
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://www.parkandpaint.co.uk/">
-  <meta property="og:title" content="Car Paint Repair | Park and Paint | Bath | England">
-  <meta property="og:description" content="Park and Paint repairs the scratches and scuffs on your car. Professional SMART repair services in Bath, England.">
-  <meta property="og:image" content="https://www.parkandpaint.co.uk/images/og-image.svg">
-  
-  <!-- Twitter -->
-  <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:url" content="https://www.parkandpaint.co.uk/">
-  <meta property="twitter:title" content="Car Paint Repair | Park and Paint | Bath | England">
-  <meta property="twitter:description" content="Park and Paint repairs the scratches and scuffs on your car. Professional SMART repair services in Bath, England.">
-  <meta property="twitter:image" content="https://www.parkandpaint.co.uk/images/twitter-image.svg">
-  
-  <!-- Canonical URL -->
-  <link rel="canonical" href="https://www.parkandpaint.co.uk/">
-  
-  <!-- Security Headers -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' fonts.googleapis.com https://unpkg.com; font-src fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://*.tile.openstreetmap.org https://tile.openstreetmap.org; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self';">
-  <meta http-equiv="X-Content-Type-Options" content="nosniff">
-  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
-  <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
-  
-  <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  
-  <!-- Resource Hints for Performance -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="dns-prefetch" href="//unpkg.com">
-  <link rel="dns-prefetch" href="//tile.openstreetmap.org">
-  
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-  
-  <!-- Preload Critical Images -->
-  <link rel="preload" href="/images/hero-bg-1200w.webp" as="image" type="image/webp">
-  <link rel="preload" href="/images/hero-bg.jpg" as="image" type="image/jpeg">
-  
-  <!-- Leaflet CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-    crossorigin="anonymous" />
-  
-  <!-- Structured Data / Schema.org -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "Park and Paint",
-    "description": "Professional car paint repair and SMART repair services. We repair scratches and scuffs on your car with lifetime guarantee.",
-    "url": "https://www.parkandpaint.co.uk",
-    "telephone": "07732441000",
-    "email": "stuart@parkandpaint.co.uk",
-    "priceRange": "$$",
-    "paymentAccepted": ["Cash", "Credit Card", "Debit Card"],
-    "currenciesAccepted": "GBP",
-    "areaServed": {
-      "@type": "City",
-      "name": "Bath",
-      "containedInPlace": {
-        "@type": "State",
-        "name": "England"
-      }
-    },
-    "serviceArea": {
-      "@type": "GeoCircle",
-      "geoMidpoint": {
-        "@type": "GeoCoordinates",
-        "latitude": "51.3792880272762",
-        "longitude": "-2.3531900513862065"
-      },
-      "geoRadius": "25000"
-    },
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "7 Ferry Court",
-      "addressLocality": "Bath",
-      "addressRegion": "England",
-      "postalCode": "BA2 4JW",
-      "addressCountry": "GB"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": "51.3792880272762",
-      "longitude": "-2.3531900513862065"
-    },
-    "openingHoursSpecification": [
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday"],
-        "opens": "07:30",
-        "closes": "16:00"
-      },
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Friday", "Saturday"],
-        "opens": "00:00",
-        "closes": "00:00",
-        "validFrom": "2024-01-01",
-        "validThrough": "2024-12-31"
-      }
-    ],
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "Car Repair Services",
-      "itemListElement": [
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "SMART Repair",
-            "description": "Small to Medium Area Repair Technology for car paint damage"
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Scratch Repair",
-            "description": "Professional scratch repair and paint touch-up services"
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Dent Repair",
-            "description": "Paintless dent repair and traditional dent removal"
-          }
-        }
-      ]
-    },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.8",
-      "reviewCount": "41",
-      "bestRating": "5",
-      "worstRating": "1"
-    },
-    "review": [
-      {
-        "@type": "Review",
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": "5",
-          "bestRating": "5"
-        },
-        "author": {
-          "@type": "Person",
-          "name": "Stephanie Moger"
-        },
-        "reviewBody": "Stuart was really friendly, accommodating and did a fantastic job on my car at a very fair price. Would 100% recommend and come back to him if needed, thanks!"
-      }
-    ]
-  }
-  </script>
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<body class="antialiased bg-gray-50 text-gray-950" x-data="{ mobileMenuOpen: false }">
-  
-  <!-- Skip to main content link for accessibility -->
-  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-brand-4 focus:text-white focus:rounded">
-    Skip to main content
-  </a>
+    <!-- Primary Meta Tags -->
+    <title>Car Paint Repair | Park and Paint | Bath | England</title>
+    <meta name="title" content="Car Paint Repair | Park and Paint | Bath | England" />
+    <meta
+      name="description"
+      content="Park and Paint repairs the scratches and scuffs on your car. Professional SMART repair services in Bath, England. Mobile car paint repair at your convenience."
+    />
+    <meta
+      name="keywords"
+      content="car paint repair, scratch repair, SMART repair, mobile car repair, Bath, car body repair, scuff repair"
+    />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="English" />
+    <meta name="author" content="Park and Paint" />
 
-  <!-- Header & Navigation -->
-  <header class="bg-brand-4 shadow-md fixed w-full top-0 z-40" role="banner">
-    <nav class="container mx-auto px-4 py-4" role="navigation" aria-label="Main navigation">
-      <div class="flex items-center justify-between">
-        
-        <!-- Logo -->
-        <div class="flex items-center">
-          <a href="/" class="logo text-2xl font-bold text-white hover:text-gray-200 transition-colors">
-            PARK AND PAINT
-          </a>
+    <!-- Additional SEO Meta Tags -->
+    <meta name="geo.region" content="GB-ENG" />
+    <meta name="geo.placename" content="Bath" />
+    <meta name="geo.position" content="51.3792880272762;-2.3531900513862065" />
+    <meta name="ICBM" content="51.3792880272762, -2.3531900513862065" />
+    <meta name="theme-color" content="#006DE0" />
+    <meta name="msapplication-TileColor" content="#006DE0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Park and Paint" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.parkandpaint.co.uk/" />
+    <meta property="og:title" content="Car Paint Repair | Park and Paint | Bath | England" />
+    <meta
+      property="og:description"
+      content="Park and Paint repairs the scratches and scuffs on your car. Professional SMART repair services in Bath, England."
+    />
+    <meta property="og:image" content="https://www.parkandpaint.co.uk/images/og-image.svg" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://www.parkandpaint.co.uk/" />
+    <meta property="twitter:title" content="Car Paint Repair | Park and Paint | Bath | England" />
+    <meta
+      property="twitter:description"
+      content="Park and Paint repairs the scratches and scuffs on your car. Professional SMART repair services in Bath, England."
+    />
+    <meta
+      property="twitter:image"
+      content="https://www.parkandpaint.co.uk/images/twitter-image.svg"
+    />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.parkandpaint.co.uk/" />
+
+    <!-- Security Headers -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' fonts.googleapis.com https://unpkg.com; font-src fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://*.tile.openstreetmap.org https://tile.openstreetmap.org; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self';"
+    />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
+    <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <!-- Resource Hints for Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="//unpkg.com" />
+    <link rel="dns-prefetch" href="//tile.openstreetmap.org" />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700&family=Work+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Preload Critical Images -->
+    <link rel="preload" href="/images/hero-bg-1200w.webp" as="image" type="image/webp" />
+    <link rel="preload" href="/images/hero-bg.jpg" as="image" type="image/jpeg" />
+
+    <!-- Leaflet CSS -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin="anonymous"
+    />
+
+    <!-- Structured Data / Schema.org -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Park and Paint",
+        "description": "Professional car paint repair and SMART repair services. We repair scratches and scuffs on your car with lifetime guarantee.",
+        "url": "https://www.parkandpaint.co.uk",
+        "telephone": "07732441000",
+        "email": "stuart@parkandpaint.co.uk",
+        "priceRange": "$$",
+        "paymentAccepted": ["Cash", "Credit Card", "Debit Card"],
+        "currenciesAccepted": "GBP",
+        "areaServed": {
+          "@type": "City",
+          "name": "Bath",
+          "containedInPlace": {
+            "@type": "State",
+            "name": "England"
+          }
+        },
+        "serviceArea": {
+          "@type": "GeoCircle",
+          "geoMidpoint": {
+            "@type": "GeoCoordinates",
+            "latitude": "51.3792880272762",
+            "longitude": "-2.3531900513862065"
+          },
+          "geoRadius": "25000"
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "7 Ferry Court",
+          "addressLocality": "Bath",
+          "addressRegion": "England",
+          "postalCode": "BA2 4JW",
+          "addressCountry": "GB"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": "51.3792880272762",
+          "longitude": "-2.3531900513862065"
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday"],
+            "opens": "07:30",
+            "closes": "16:00"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Friday", "Saturday"],
+            "opens": "00:00",
+            "closes": "00:00",
+            "validFrom": "2024-01-01",
+            "validThrough": "2024-12-31"
+          }
+        ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Car Repair Services",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "SMART Repair",
+                "description": "Small to Medium Area Repair Technology for car paint damage"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Scratch Repair",
+                "description": "Professional scratch repair and paint touch-up services"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Dent Repair",
+                "description": "Paintless dent repair and traditional dent removal"
+              }
+            }
+          ]
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.8",
+          "reviewCount": "41",
+          "bestRating": "5",
+          "worstRating": "1"
+        },
+        "review": [
+          {
+            "@type": "Review",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "5",
+              "bestRating": "5"
+            },
+            "author": {
+              "@type": "Person",
+              "name": "Stephanie Moger"
+            },
+            "reviewBody": "Stuart was really friendly, accommodating and did a fantastic job on my car at a very fair price. Would 100% recommend and come back to him if needed, thanks!"
+          }
+        ]
+      }
+    </script>
+  </head>
+
+  <body class="antialiased bg-gray-50 text-gray-950" x-data="{ mobileMenuOpen: false }">
+    <!-- Skip to main content link for accessibility -->
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-brand-4 focus:text-white focus:rounded"
+    >
+      Skip to main content
+    </a>
+
+    <!-- Header & Navigation -->
+    <header class="bg-brand-4 shadow-md fixed w-full top-0 z-40" role="banner">
+      <nav class="container mx-auto px-4 py-4" role="navigation" aria-label="Main navigation">
+        <div class="flex items-center justify-between">
+          <!-- Logo -->
+          <div class="flex items-center">
+            <a
+              href="/"
+              class="logo text-2xl font-bold text-white hover:text-gray-200 transition-colors"
+            >
+              PARK AND PAINT
+            </a>
+          </div>
+
+          <!-- Desktop Navigation -->
+          <div class="hidden md:flex items-center space-x-8">
+            <a
+              href="#home"
+              class="text-white hover:text-gray-200 transition-colors font-normal font-barlow"
+            >
+              Home
+            </a>
+            <a
+              href="#services"
+              class="text-white hover:text-gray-200 transition-colors font-normal font-barlow"
+            >
+              Services
+            </a>
+            <a
+              href="#contact"
+              class="text-white hover:text-gray-200 transition-colors font-normal font-barlow"
+            >
+              Contact
+            </a>
+          </div>
+
+          <!-- Mobile menu button -->
+          <button
+            @click="mobileMenuOpen = !mobileMenuOpen"
+            class="md:hidden p-4 rounded-lg text-white hover:bg-brand-5 transition-colors w-15 h-15"
+            aria-label="Toggle mobile menu"
+            aria-expanded="false"
+            :aria-expanded="mobileMenuOpen.toString()"
+          >
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                x-show="!mobileMenuOpen"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              ></path>
+              <path
+                x-show="mobileMenuOpen"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"
+              ></path>
+            </svg>
+          </button>
         </div>
 
-        <!-- Desktop Navigation -->
-        <div class="hidden md:flex items-center space-x-8">
-          <a href="#home" class="text-white hover:text-gray-200 transition-colors font-normal font-barlow">
-            Home
-          </a>
-          <a href="#services" class="text-white hover:text-gray-200 transition-colors font-normal font-barlow">
-            Services
-          </a>
-          <a href="#contact" class="text-white hover:text-gray-200 transition-colors font-normal font-barlow">
-            Contact
-          </a>
-        </div>
-
-        <!-- Mobile menu button -->
-        <button 
-          @click="mobileMenuOpen = !mobileMenuOpen" 
-          class="md:hidden p-4 rounded-lg text-white hover:bg-brand-5 transition-colors w-15 h-15"
-          aria-label="Toggle mobile menu"
-          aria-expanded="false"
-          :aria-expanded="mobileMenuOpen.toString()"
+        <!-- Mobile Navigation Menu -->
+        <div
+          x-show="mobileMenuOpen"
+          x-transition:enter="transition ease-out duration-200"
+          x-transition:enter-start="opacity-0 transform -translate-y-2"
+          x-transition:enter-end="opacity-100 transform translate-y-0"
+          x-transition:leave="transition ease-in duration-150"
+          x-transition:leave-start="opacity-100 transform translate-y-0"
+          x-transition:leave-end="opacity-0 transform -translate-y-2"
+          @click.away="mobileMenuOpen = false"
+          class="md:hidden mt-4 pb-4"
+          x-cloak
         >
-          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path x-show="!mobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-            <path x-show="mobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-          </svg>
-        </button>
-      </div>
-
-      <!-- Mobile Navigation Menu -->
-      <div 
-        x-show="mobileMenuOpen" 
-        x-transition:enter="transition ease-out duration-200"
-        x-transition:enter-start="opacity-0 transform -translate-y-2"
-        x-transition:enter-end="opacity-100 transform translate-y-0"
-        x-transition:leave="transition ease-in duration-150"
-        x-transition:leave-start="opacity-100 transform translate-y-0"
-        x-transition:leave-end="opacity-0 transform -translate-y-2"
-        @click.away="mobileMenuOpen = false"
-        class="md:hidden mt-4 pb-4"
-        x-cloak
-      >
-        <div class="flex flex-col space-y-4">
-          <a href="#home" class="text-white hover:text-gray-200 transition-colors font-normal font-barlow">
-            Home
-          </a>
-          <a href="#services" class="text-white hover:text-gray-200 transition-colors font-normal font-barlow">
-            Services
-          </a>
-          <a href="#contact" class="text-white hover:text-gray-200 transition-colors font-normal font-barlow">
-            Contact
-          </a>
-        </div>
-      </div>
-    </nav>
-  </header>
-
-  <!-- Main Content -->
-  <main id="main-content" class="pt-16" role="main">
-    
-    <!-- Home Section -->
-    <section id="home" class="relative overflow-hidden">
-      <!-- Mobile: Full screen height -->
-      <div class="h-screen lg:hidden">
-        <div class="absolute inset-0 z-0">
-          <picture>
-            <source 
-              media="(max-width: 800px)" 
-              srcset="/images/hero-bg-800w.webp" 
-              type="image/webp"
+          <div class="flex flex-col space-y-4">
+            <a
+              href="#home"
+              class="text-white hover:text-gray-200 transition-colors font-normal font-barlow"
             >
-            <source 
-              media="(max-width: 1200px)" 
-              srcset="/images/hero-bg-1200w.webp" 
-              type="image/webp"
+              Home
+            </a>
+            <a
+              href="#services"
+              class="text-white hover:text-gray-200 transition-colors font-normal font-barlow"
             >
-            <source 
-              srcset="/images/hero-bg-1600w.webp" 
-              type="image/webp"
+              Services
+            </a>
+            <a
+              href="#contact"
+              class="text-white hover:text-gray-200 transition-colors font-normal font-barlow"
             >
-            <img 
-              src="/images/hero-bg.jpg" 
-              alt="Professional car paint repair background"
-              class="w-full h-full object-cover"
-              loading="eager"
-              decoding="async"
-            >
-          </picture>
-          <!-- Full overlay on mobile -->
-          <div class="absolute inset-0 bg-gray-900 bg-opacity-60"></div>
-        </div>
-        
-        <!-- Mobile: Centered content -->
-        <div class="relative z-10 w-full h-full flex items-center justify-center px-8">
-          <div class="text-center text-white">
-            <h1 class="text-heading-4 font-bold mb-6 text-white font-barlow">
-              WELCOME TO PARK AND PAINT
-            </h1>
-            <h2 class="text-heading-5 font-normal mb-8 text-white font-barlow">
-              FIXING DENTS, SCUFFS AND SCRATCHES
-            </h2>
-            <p class="text-body-large mb-8 text-white font-light">
-              If you have a scuff on your bumper, a scratch in your paintwork or a dent in your bodywork, then there's no need to worry! Park and Paint are here to help you!
-            </p>
+              Contact
+            </a>
           </div>
         </div>
-      </div>
+      </nav>
+    </header>
 
-      <!-- Desktop: Half screen height -->
-      <div class="hidden lg:block lg:h-screen">
-        <div class="absolute inset-0 z-0">
-          <picture>
-            <source 
-              media="(min-width: 1200px)" 
-              srcset="/images/hero-bg-1600w.webp" 
-              type="image/webp"
-            >
-            <source 
-              srcset="/images/hero-bg-1200w.webp" 
-              type="image/webp"
-            >
-            <img 
-              src="/images/hero-bg.jpg" 
-              alt="Professional car paint repair background"
-              class="w-full h-full object-cover"
-              loading="eager"
-              decoding="async"
-            >
-          </picture>
-          <!-- Half opacity overlay on right side for desktop -->
-          <div class="absolute inset-0 bg-gray-900 bg-opacity-60" style="clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%);"></div>
-        </div>
-        
-        <!-- Desktop: Content positioned on right side -->
-        <div class="relative z-10 w-full h-full flex items-center">
-          <div class="w-1/2 ml-auto px-8">
-            <div class="max-w-2xl text-white">
-              <h1 class="text-heading-2 font-bold mb-6 text-white font-barlow">
+    <!-- Main Content -->
+    <main id="main-content" class="pt-16" role="main">
+      <!-- Home Section -->
+      <section id="home" class="relative overflow-hidden">
+        <!-- Mobile: Full screen height -->
+        <div class="h-screen lg:hidden">
+          <div class="absolute inset-0 z-0">
+            <picture>
+              <source
+                media="(max-width: 800px)"
+                srcset="/images/hero-bg-800w.webp"
+                type="image/webp"
+              />
+              <source
+                media="(max-width: 1200px)"
+                srcset="/images/hero-bg-1200w.webp"
+                type="image/webp"
+              />
+              <source srcset="/images/hero-bg-1600w.webp" type="image/webp" />
+              <img
+                src="/images/hero-bg.jpg"
+                alt="Professional car paint repair background"
+                class="w-full h-full object-cover"
+                loading="eager"
+                decoding="async"
+              />
+            </picture>
+            <!-- Full overlay on mobile -->
+            <div class="absolute inset-0 bg-gray-900 bg-opacity-60"></div>
+          </div>
+
+          <!-- Mobile: Centered content -->
+          <div class="relative z-10 w-full h-full flex items-center justify-center px-8">
+            <div class="text-center text-white">
+              <h1 class="text-heading-4 font-bold mb-6 text-white font-barlow">
                 WELCOME TO PARK AND PAINT
               </h1>
-              <h2 class="text-heading-4 font-normal mb-8 text-white font-barlow">
+              <h2 class="text-heading-5 font-normal mb-8 text-white font-barlow">
                 FIXING DENTS, SCUFFS AND SCRATCHES
               </h2>
               <p class="text-body-large mb-8 text-white font-light">
-                If you have a scuff on your bumper, a scratch in your paintwork or a dent in your bodywork, then there's no need to worry! Park and Paint are here to help you!
+                If you have a scuff on your bumper, a scratch in your paintwork or a dent in your
+                bodywork, then there's no need to worry! Park and Paint are here to help you!
               </p>
             </div>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- Our Services Section -->
-    <section id="services" class="py-20 bg-brand-4">
-      <div class="container mx-auto px-4">
-        <div class="max-w-4xl mx-auto">
-          <!-- Main Heading -->
-          <h2 class="text-heading-3 md:text-heading-2 font-bold text-white text-center mb-6 font-barlow">
-            OUR SERVICES
-          </h2>
-          
-          <!-- Subtitle -->
-          <h3 class="text-heading-6 md:text-heading-5 font-normal text-white text-center mb-12 font-barlow">
-            Quality Guaranteed
-          </h3>
-          
-          <!-- Body Text -->
-          <div class="space-y-6 text-white">
-            <p class="text-body-large md:text-heading-6 leading-relaxed">
-              Park and Paint has the tools and experience to keep your vehicle looking smart and scratch free. We offer the highest quality customer service and will treat your car as if it were our own. You'll be amazed at the difference we can make! Our services are done by a staff that is professional and knowledgeable. Our team is ready and qualified for any challenge your vehicle may offer.
-            </p>
-            
-            <p class="text-body-large md:text-heading-6 leading-relaxed">
-              All of our work carries a lifetime guarantee for as long as you own the vehicle and keep the payment invoice. Exceptions include: existing rust, touching in, passing lease inspection.
-            </p>
+        <!-- Desktop: Half screen height -->
+        <div class="hidden lg:block lg:h-screen">
+          <div class="absolute inset-0 z-0">
+            <picture>
+              <source
+                media="(min-width: 1200px)"
+                srcset="/images/hero-bg-1600w.webp"
+                type="image/webp"
+              />
+              <source srcset="/images/hero-bg-1200w.webp" type="image/webp" />
+              <img
+                src="/images/hero-bg.jpg"
+                alt="Professional car paint repair background"
+                class="w-full h-full object-cover"
+                loading="eager"
+                decoding="async"
+              />
+            </picture>
+            <!-- Half opacity overlay on right side for desktop -->
+            <div
+              class="absolute inset-0 bg-gray-900 bg-opacity-60"
+              style="clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%)"
+            ></div>
+          </div>
+
+          <!-- Desktop: Content positioned on right side -->
+          <div class="relative z-10 w-full h-full flex items-center">
+            <div class="w-1/2 ml-auto px-8">
+              <div class="max-w-2xl text-white">
+                <h1 class="text-heading-2 font-bold mb-6 text-white font-barlow">
+                  WELCOME TO PARK AND PAINT
+                </h1>
+                <h2 class="text-heading-4 font-normal mb-8 text-white font-barlow">
+                  FIXING DENTS, SCUFFS AND SCRATCHES
+                </h2>
+                <p class="text-body-large mb-8 text-white font-light">
+                  If you have a scuff on your bumper, a scratch in your paintwork or a dent in your
+                  bodywork, then there's no need to worry! Park and Paint are here to help you!
+                </p>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Opening Hours Section -->
-    <section id="hours" class="bg-white">
-      <div class="flex flex-col lg:flex-row min-h-[500px]">
-        <!-- Left Side - Image -->
-        <div class="w-full lg:w-1/2 relative">
-          <picture>
-            <source 
-              media="(max-width: 768px)" 
-              srcset="/images/painter-working-800w.webp" 
-              type="image/webp"
+      <!-- Our Services Section -->
+      <section id="services" class="py-20 bg-brand-4">
+        <div class="container mx-auto px-4">
+          <div class="max-w-4xl mx-auto">
+            <!-- Main Heading -->
+            <h2
+              class="text-heading-3 md:text-heading-2 font-bold text-white text-center mb-6 font-barlow"
             >
-            <source 
-              media="(max-width: 1200px)" 
-              srcset="/images/painter-working-1200w.webp" 
-              type="image/webp"
-            >
-            <source 
-              srcset="/images/painter-working-1600w.webp" 
-              type="image/webp"
-            >
-            <img 
-              src="/images/painter-working.jpg" 
-              alt="Professional painter working on car repair"
-              class="w-full h-full object-cover"
-              loading="lazy"
-              decoding="async"
-            >
-          </picture>
-        </div>
-        
-        <!-- Right Side - Text Content -->
-        <div class="w-full lg:w-1/2 bg-white flex items-center justify-center p-8 lg:p-12">
-          <div class="max-w-md">
-            <h2 class="text-heading-4 md:text-heading-3 font-bold text-brand-4 mb-4 font-barlow">
-              OPENING HOURS
+              OUR SERVICES
             </h2>
-            
-            <p class="text-body-large text-gray-600 mb-8">
-              Come visit us for a free estimate
-            </p>
-            
-            <div class="space-y-3 text-gray-700">
-              <p class="text-body-large">
-                <span class="font-semibold">Monday - Thursday:</span> 7:30 AM - 4:00 PM
+
+            <!-- Subtitle -->
+            <h3
+              class="text-heading-6 md:text-heading-5 font-normal text-white text-center mb-12 font-barlow"
+            >
+              Quality Guaranteed
+            </h3>
+
+            <!-- Body Text -->
+            <div class="space-y-6 text-white">
+              <p class="text-body-large md:text-heading-6 leading-relaxed">
+                Park and Paint has the tools and experience to keep your vehicle looking smart and
+                scratch free. We offer the highest quality customer service and will treat your car
+                as if it were our own. You'll be amazed at the difference we can make! Our services
+                are done by a staff that is professional and knowledgeable. Our team is ready and
+                qualified for any challenge your vehicle may offer.
               </p>
-              <p class="text-body-large">
-                <span class="font-semibold">Friday & Saturday:</span> By Appointment
-              </p>
-              <p class="text-body-large">
-                <span class="font-semibold">Sunday:</span> Closed
+
+              <p class="text-body-large md:text-heading-6 leading-relaxed">
+                All of our work carries a lifetime guarantee for as long as you own the vehicle and
+                keep the payment invoice. Exceptions include: existing rust, touching in, passing
+                lease inspection.
               </p>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Contact Us Section -->
-    <section id="contact" class="py-20 bg-gray-800">
-      <div class="container mx-auto px-4">
-        <div class="max-w-4xl mx-auto text-center text-white">
-          <h2 class="text-heading-3 md:text-heading-2 font-bold mb-12 text-white font-barlow">
-            CONTACT US
-          </h2>
-          
-          <div class="space-y-8">
-            <p class="text-body-large md:text-heading-6">
-              7 Ferry Court, Bath, England, United Kingdom, BA2 4JW
-            </p>
-            
-            <p class="text-body-large md:text-heading-6">
-              <a href="mailto:stuart@parkandpaint.co.uk" class="text-white hover:text-gray-300 transition-colors">
-                stuart@parkandpaint.co.uk
-              </a>
-            </p>
-            
-            <p class="text-body-large md:text-heading-6">
-              <a href="tel:07732441000" class="text-white hover:text-gray-300 transition-colors">
-                07732 44 1000
-              </a>
-            </p>
+      <!-- Opening Hours Section -->
+      <section id="hours" class="bg-white">
+        <div class="flex flex-col lg:flex-row min-h-[500px]">
+          <!-- Left Side - Image -->
+          <div class="w-full lg:w-1/2 relative">
+            <picture>
+              <source
+                media="(max-width: 768px)"
+                srcset="/images/painter-working-800w.webp"
+                type="image/webp"
+              />
+              <source
+                media="(max-width: 1200px)"
+                srcset="/images/painter-working-1200w.webp"
+                type="image/webp"
+              />
+              <source srcset="/images/painter-working-1600w.webp" type="image/webp" />
+              <img
+                src="/images/painter-working.jpg"
+                alt="Professional painter working on car repair"
+                class="w-full h-full object-cover"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
+          </div>
+
+          <!-- Right Side - Text Content -->
+          <div class="w-full lg:w-1/2 bg-white flex items-center justify-center p-8 lg:p-12">
+            <div class="max-w-md">
+              <h2 class="text-heading-4 md:text-heading-3 font-bold text-brand-4 mb-4 font-barlow">
+                OPENING HOURS
+              </h2>
+
+              <p class="text-body-large text-gray-600 mb-8">Come visit us for a free estimate</p>
+
+              <div class="space-y-3 text-gray-700">
+                <p class="text-body-large">
+                  <span class="font-semibold">Monday - Thursday:</span> 7:30 AM - 4:00 PM
+                </p>
+                <p class="text-body-large">
+                  <span class="font-semibold">Friday & Saturday:</span> By Appointment
+                </p>
+                <p class="text-body-large"><span class="font-semibold">Sunday:</span> Closed</p>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Map Section -->
-    <section id="map" class="relative bg-gray-800">
+      <!-- Contact Us Section -->
+      <section id="contact" class="py-20 bg-gray-800">
+        <div class="container mx-auto px-4">
+          <div class="max-w-4xl mx-auto text-center text-white">
+            <h2 class="text-heading-3 md:text-heading-2 font-bold mb-12 text-white font-barlow">
+              CONTACT US
+            </h2>
+
+            <div class="space-y-8">
+              <p class="text-body-large md:text-heading-6">
+                7 Ferry Court, Bath, England, United Kingdom, BA2 4JW
+              </p>
+
+              <p class="text-body-large md:text-heading-6">
+                <a
+                  href="mailto:stuart@parkandpaint.co.uk"
+                  class="text-white hover:text-gray-300 transition-colors"
+                >
+                  stuart@parkandpaint.co.uk
+                </a>
+              </p>
+
+              <p class="text-body-large md:text-heading-6">
+                <a href="tel:07732441000" class="text-white hover:text-gray-300 transition-colors">
+                  07732 44 1000
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Map Section -->
+      <section id="map" class="relative bg-gray-800">
+        <div class="container mx-auto px-4">
+          <!-- Map Container -->
+          <div
+            id="mapContainer"
+            class="h-96 md:h-[600px] rounded-xl shadow-lg relative z-10"
+            role="application"
+            aria-label="Interactive map showing our location at 7 Ferry Court, BA2 4JW"
+          ></div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-8" role="contentinfo">
       <div class="container mx-auto px-4">
-        <!-- Map Container -->
-        <div 
-          id="mapContainer" 
-          class="h-96 md:h-[600px] rounded-xl shadow-lg relative z-10"
-          role="application"
-          aria-label="Interactive map showing our location at 7 Ferry Court, BA2 4JW"
-        ></div>
-        
+        <div class="text-center">
+          <p class="text-white">&copy; 2025 by Park and Paint.</p>
+        </div>
       </div>
-    </section>
+    </footer>
 
-  </main>
-
-  <!-- Footer -->
-  <footer class="bg-gray-900 text-gray-300 py-8" role="contentinfo">
-    <div class="container mx-auto px-4">
-      <div class="text-center">
-        <p class="text-white">&copy; 2025 by Park and Paint.</p>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Scripts -->
-  <script type="module" src="/src/main.js"></script>
-</body>
+    <!-- Scripts -->
+    <script type="module" src="/src/main.js"></script>
+  </body>
 </html>
-

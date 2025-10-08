@@ -25,7 +25,7 @@ describe('Site Configuration', () => {
         VITE_ADDRESS_FULL: '7 Ferry Court, Bath, England, United Kingdom, BA2 4JW',
         VITE_MAP_CENTER_LAT: '51.3792880272762',
         VITE_MAP_CENTER_LNG: '-2.3531900513862065',
-        VITE_MAP_ZOOM: '13',
+        VITE_MAP_ZOOM: '11',
         VITE_HOURS_MONDAY_THURSDAY: '7:30 AM - 4:00 PM',
         VITE_HOURS_FRIDAY_SATURDAY: 'By Appointment',
         VITE_HOURS_SUNDAY: 'Closed',
