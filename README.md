@@ -62,48 +62,52 @@ The site will be available at `http://localhost:3000`
 
 ## 🚀 Deployment
 
-### GitHub Pages (Recommended)
+### Current Hosting Setup
 
-This project is configured for automatic deployment to GitHub Pages using GitHub Actions.
+**Hosting:** GitHub Pages  
+**Repository:** https://github.com/Bobbyberta/park-and-paint  
+**Live Site:** https://www.parkandpaint.co.uk  
+**Deployment Method:** Automatic via GitHub Actions
 
-#### Setup Steps:
+**Domain Registration:**
+- **Registrar:** Wix
+- **Domain:** www.parkandpaint.co.uk
+- **Expiration Date:** June 22, 2028
+- **DNS Configuration:** CNAME record pointing to GitHub Pages
 
-1. **Create a new repository on GitHub**
+**Analytics:**
+- **Platform:** Google Analytics 4
+- **Tracking ID:** G-E718YMXYXN
+- **Dashboard:** https://analytics.google.com
 
-```bash
-git init
-git add .
-git commit -m "Initial commit"
-git branch -M main
-git remote add origin https://github.com/yourusername/park-and-paint.git
-git push -u origin main
-```
+### Deployment Process
 
-2. **Enable GitHub Pages**
+This project uses **GitHub Actions** for automatic deployment:
 
-   - Go to your repository settings
-   - Navigate to **Pages** section
-   - Under **Source**, select **GitHub Actions**
+1. **Automatic Deployment**
+   - Every push to `main` branch triggers deployment
+   - GitHub Actions workflow builds and deploys automatically
+   - Check deployment status: https://github.com/Bobbyberta/park-and-paint/actions
+   - Build time: ~2 minutes
+   - Full propagation: ~10 minutes
 
-3. **Configure custom domain (Optional)**
+2. **Workflow Configuration**
+   - Located in `.github/workflows/deploy.yml`
+   - Uses Node.js 20 for consistent builds
+   - Deploys `dist/` directory to GitHub Pages
+   - Runs on every push and can be triggered manually
 
-   - In GitHub Pages settings, add your custom domain
-   - Update the `base` property in `vite.config.js` if using a project site:
-     ```js
-     base: '/park-and-paint/'  // For project site
-     base: '/'                 // For custom domain
-     ```
-   - Create a `CNAME` file in the `public/` directory with your domain
+3. **Domain Configuration**
+   - Custom domain configured in GitHub Pages settings
+   - `CNAME` file in `public/` directory points to `www.parkandpaint.co.uk`
+   - `vite.config.js` has `base: '/'` for custom domain deployment
 
-4. **Automatic Deployment**
-   - Every push to `main` branch triggers automatic deployment
-   - Check the **Actions** tab to monitor deployment status
-
-### Manual Deployment
+### Manual Build (Testing Only)
 
 ```bash
 npm run build
-# Upload the dist/ folder to your hosting provider
+# Output is in the dist/ folder
+# GitHub Actions handles deployment automatically
 ```
 
 ## 📁 Project Structure

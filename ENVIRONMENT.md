@@ -47,9 +47,9 @@ This document describes the environment variables available for configuring the 
 - `VITE_SOCIAL_TWITTER` - Twitter profile URL
 - `VITE_SOCIAL_INSTAGRAM` - Instagram profile URL
 
-### Analytics (Future Use)
-- `VITE_GA_TRACKING_ID` - Google Analytics tracking ID
-- `VITE_GTM_ID` - Google Tag Manager container ID
+### Analytics
+- `VITE_GA_TRACKING_ID` - Google Analytics tracking ID (current: G-E718YMXYXN)
+- `VITE_GTM_ID` - Google Tag Manager container ID (optional)
 
 ## Usage in Code
 
@@ -71,11 +71,19 @@ console.log(siteConfig.map.centerLat);
 
 ## Production Deployment
 
+**Current Setup:**
+- **Hosting:** GitHub Pages
+- **Repository:** https://github.com/Bobbyberta/park-and-paint
+- **Domain:** www.parkandpaint.co.uk (registered with Wix, expires Jun 22, 2028)
+- **Deployment:** Automatic via GitHub Actions on every push to main branch
+- **Analytics:** Google Analytics 4 (Tracking ID: G-E718YMXYXN)
+
 For production deployments:
 
-1. Set environment variables in your hosting platform
-2. GitHub Actions will automatically use the variables during build
-3. Ensure all required variables are set in your deployment environment
+1. Environment variables are set in the GitHub repository settings (if needed)
+2. GitHub Actions automatically uses variables during build
+3. Google Analytics is configured directly in `index.html`
+4. Domain DNS points to GitHub Pages via CNAME record
 
 ## Default Values
 
