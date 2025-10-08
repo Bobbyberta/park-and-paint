@@ -5,7 +5,7 @@ import { visualizer } from 'rollup-plugin-visualizer';
 // https://vitejs.dev/config/
 export default defineConfig({
   // Set base to '/' for root deployment or '/repo-name/' for GitHub Pages project site
-  base: '/',
+  base: '/park-and-paint/',
   
   // Environment variables configuration
   define: {
