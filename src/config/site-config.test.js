@@ -61,7 +61,7 @@ describe('Site Configuration', () => {
     it('should have correct map configuration', () => {
       expect(siteConfig.map.centerLat).toBe(51.3792880272762);
       expect(siteConfig.map.centerLng).toBe(-2.3531900513862065);
-      expect(siteConfig.map.zoom).toBe(13);
+      expect(siteConfig.map.zoom).toBe(11);
     });
 
     it('should have correct business hours', () => {
