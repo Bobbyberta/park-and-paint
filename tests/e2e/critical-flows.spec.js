@@ -64,7 +64,14 @@ test.describe('Homepage', () => {
     const h1 = page.getByRole('heading', { level: 1 });
     await expect(h1).toBeVisible();
 
+    // Wait for map to load (contains dynamically loaded images)
+    await page.waitForSelector('#mapContainer', { timeout: 10000 });
+
+    // Wait for map accessibility fixes to apply (runs after 1000ms delay)
+    await page.waitForTimeout(1500);
+
     // Check for alt text on images
+    // Note: Leaflet map tiles have alt text added via JavaScript accessibility functions
     const images = page.locator('img');
     const imageCount = await images.count();
     for (let i = 0; i < imageCount; i++) {
