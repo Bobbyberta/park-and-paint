@@ -121,6 +121,9 @@ npm run build
 ### First Time Setup
 
 ```bash
+# IMPORTANT: Create .nojekyll file first (REQUIRED for Vite)
+touch public/.nojekyll
+
 # Initialize git repository
 git init
 git add .
@@ -131,6 +134,8 @@ git remote add origin https://github.com/yourusername/park-and-paint.git
 git branch -M main
 git push -u origin main
 ```
+
+**⚠️ CRITICAL:** The `.nojekyll` file is REQUIRED to prevent GitHub Pages from using Jekyll processing, which breaks Vite builds. Without it, you'll get 404 errors for all assets and CSS.
 
 ### Enable GitHub Pages
 
@@ -162,6 +167,15 @@ Value: yourusername.github.io
 base: '/',  // For custom domain
 ```
 
+5. **Verify deployment files:**
+
+```bash
+# After building, check these files exist in dist/:
+npm run build
+ls -la dist/.nojekyll  # Must exist
+ls -la dist/CNAME      # Must exist if using custom domain
+```
+
 ## Common Tasks
 
 ### Update Dependencies
@@ -180,6 +194,11 @@ npm update        # Update packages
 
 ### Troubleshooting
 
+**Site broken after deployment? (404 errors, no CSS, module errors)**
+- **Most common cause:** Missing `.nojekyll` file
+- Solution: Run `touch public/.nojekyll`, rebuild, and redeploy
+- See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed fix
+
 **Map not showing?**
 - Check browser console for errors
 - Verify Leaflet CSS is loaded
@@ -191,6 +210,7 @@ npm update        # Update packages
 - Check Node.js version (need v18+)
 
 **Images not loading?**
+- First check: Is `.nojekyll` in `public/` folder?
 - Verify images are in `public/` folder
 - Use absolute paths: `/images/pic.jpg`
 - Check file names match exactly

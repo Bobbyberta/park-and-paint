@@ -227,9 +227,55 @@ This file tells GitHub Pages to serve the site on your custom domain. Use the ap
 
 ## 🆘 Troubleshooting
 
+### Assets Not Loading & Module Resolution Errors (CRITICAL)
+
+**Symptoms:**
+- Images return 404 errors: `GET https://parkandpaint.co.uk/images/hero-bg.jpg 404`
+- CSS not loading properly
+- JavaScript error: `Uncaught TypeError: Failed to resolve module specifier "alpinejs"`
+- Map (Leaflet) not displaying
+- Site appears broken with no styling
+
+**Root Cause:** Missing `.nojekyll` file causes GitHub Pages to use Jekyll processing, which interferes with Vite builds
+
+**Solution (REQUIRED):**
+1. Ensure `.nojekyll` file exists in `public/` folder:
+   ```bash
+   touch public/.nojekyll
+   ```
+2. Verify `vite.config.js` has `base: '/'` (not '/repo-name/')
+3. Rebuild the site:
+   ```bash
+   npm run build
+   ```
+4. Verify `.nojekyll` exists in `dist/` folder after build:
+   ```bash
+   ls -la dist/.nojekyll
+   ```
+5. Commit and push all changes:
+   ```bash
+   git add public/.nojekyll
+   git commit -m "fix: Add .nojekyll to prevent Jekyll processing"
+   git push origin main
+   ```
+6. Wait 2-5 minutes for deployment to complete
+7. Clear browser cache (Cmd+Shift+R) or test in incognito mode
+
+**Why This Happens:**
+- GitHub Pages uses Jekyll by default to process static sites
+- Jekyll ignores files/folders starting with `_` (like `_app` or `_next`)
+- Vite may create asset paths that Jekyll misinterprets
+- The `.nojekyll` file tells GitHub Pages to skip Jekyll processing entirely
+- This is REQUIRED for all Vite/modern build tool deployments
+
+**Prevention:**
+- Always include `.nojekyll` in `public/` folder for Vite projects
+- Verify it's copied to `dist/` after every build
+- Add to deployment checklist (see below)
+
 ### Assets Not Loading (404 Errors)
 
-**Symptom:** Images, CSS, or JS files return 404 errors
+**Symptom:** Images, CSS, or JS files return 404 errors (after .nojekyll is confirmed present)
 
 **Solution:**
 1. Check `vite.config.js` has `base: '/'`
@@ -310,6 +356,65 @@ This file tells GitHub Pages to serve the site on your custom domain. Use the ap
 - Caching: GitHub Pages CDN handles caching
 - Compression: Gzip enabled by default
 
+## ✅ Pre-Deployment Checklist
+
+Use this checklist before every deployment to prevent common issues:
+
+### Build Verification
+- [ ] `.nojekyll` file exists in `public/` folder
+- [ ] `CNAME` file in `public/` contains: `www.parkandpaint.co.uk`
+- [ ] `vite.config.js` has `base: '/'` (not a repo path)
+- [ ] Run `npm run build` successfully with no errors
+- [ ] Verify `dist/` folder contains:
+  - [ ] `.nojekyll` file
+  - [ ] `CNAME` file
+  - [ ] `index.html` with bundled asset references
+  - [ ] `assets/` folder with JS and CSS bundles
+  - [ ] `images/` folder with all image assets
+  - [ ] `favicon.svg` and `favicon.ico`
+
+### Code Quality
+- [ ] Run `npm run lint` - no errors
+- [ ] Run `npm run format` - code formatted
+- [ ] All images optimized (WebP with fallbacks)
+- [ ] No console.log statements in production code
+
+### Testing
+- [ ] Test locally with `npm run dev` - site works
+- [ ] Test build locally with `npm run preview` - all assets load
+- [ ] Check responsive design on mobile/tablet/desktop
+- [ ] Verify all links work (internal and external)
+- [ ] Test contact information (email, phone links)
+
+### Git & Deployment
+- [ ] Commit all changes with descriptive message
+- [ ] Push to `main` branch
+- [ ] Check GitHub Actions workflow status (green ✓)
+- [ ] Wait 2-5 minutes for deployment to complete
+- [ ] Test live site: https://www.parkandpaint.co.uk
+- [ ] Clear browser cache (Cmd+Shift+R) before testing
+- [ ] Verify in incognito mode
+
+### Post-Deployment Verification
+- [ ] All images load correctly (no 404s)
+- [ ] CSS styling applied correctly
+- [ ] JavaScript working (mobile menu, map)
+- [ ] Alpine.js components functioning
+- [ ] Leaflet map displays correctly
+- [ ] Google Analytics tracking code present
+- [ ] SSL certificate active (HTTPS padlock)
+- [ ] No console errors in browser DevTools
+- [ ] Test on multiple browsers (Chrome, Firefox, Safari)
+- [ ] Test on mobile device
+
+### Emergency Rollback (If Needed)
+If deployment fails:
+1. Check GitHub Actions logs for errors
+2. Revert last commit: `git revert HEAD`
+3. Push revert: `git push origin main`
+4. Wait for automatic redeployment
+5. Fix issues locally, then redeploy
+
 ## 📱 Contact Information
 
 For deployment issues or questions:
@@ -319,5 +424,5 @@ For deployment issues or questions:
 
 ---
 
-**Last Updated:** October 8, 2025  
+**Last Updated:** October 9, 2025  
 **Next Review:** January 2026
