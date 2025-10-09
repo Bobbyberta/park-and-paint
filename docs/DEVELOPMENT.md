@@ -289,4 +289,4 @@ VITE_PERFORMANCE_MONITORING=true npm run dev
 
 **Happy coding! 🎉**
 
-For questions or support, please refer to the [README.md](./README.md) or open an issue.
+For questions or support, please refer to the [README.md](../README.md) or open an issue.

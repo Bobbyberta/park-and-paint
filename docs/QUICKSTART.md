@@ -237,8 +237,8 @@ Once your site is running:
 
 ## Need Help?
 
-- 📖 Check [README.md](README.md) for detailed docs
-- 🤝 See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines
+- 📖 Check [README.md](../README.md) for detailed docs
+- 🤝 See [CONTRIBUTING.md](../CONTRIBUTING.md) for guidelines
 - 🐛 Open an issue on GitHub
 - 📧 Email: info@parkandpaint.co.uk
 

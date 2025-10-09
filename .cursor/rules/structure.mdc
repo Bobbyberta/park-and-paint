@@ -7,7 +7,7 @@ alwaysApply: true
 ## Root Directory Organization
 - Keep `index.html` as the main entry point
 - Place all configuration files at root level: `package.json`, `vite.config.js`, `tailwind.config.js`
-- Maintain documentation files: `README.md`, `QUICKSTART.md`, `CONTRIBUTING.md`
+- Maintain documentation files: `README.md`, `CONTRIBUTING.md`, `CHANGELOG.md`, and `docs/` folder
 - Include license and changelog files: `LICENSE`, `CHANGELOG.md`
 
 ## Source Code Structure (`src/`)
@@ -38,7 +38,7 @@ alwaysApply: true
 
 ## Documentation Structure
 - `README.md` - Project overview and setup instructions
-- `QUICKSTART.md` - Step-by-step deployment guide
+- `docs/` - Comprehensive documentation (QUICKSTART, DEPLOYMENT, DEVELOPMENT, TESTING, etc.)
 - `CONTRIBUTING.md` - Development guidelines and contribution process
 - `CHANGELOG.md` - Version history and changes
 - `MIGRATION.md` - Upgrade instructions between versions
