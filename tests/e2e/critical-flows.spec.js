@@ -23,6 +23,7 @@ test.describe('Homepage', () => {
       // Desktop: nav links should be visible
       await expect(page.getByRole('link', { name: 'Home' })).toBeVisible();
       await expect(page.getByRole('link', { name: 'Services' })).toBeVisible();
+      await expect(page.getByRole('link', { name: 'Reviews' })).toBeVisible();
       await expect(page.getByRole('link', { name: 'Contact' })).toBeVisible();
     } else {
       // Mobile: hamburger menu should be visible
@@ -93,6 +94,10 @@ test.describe('Navigation', () => {
     await page.getByRole('link', { name: 'Services' }).click();
     await expect(page.locator('#services')).toBeInViewport();
 
+    // Test navigation to Reviews section
+    await page.getByRole('link', { name: 'Reviews' }).click();
+    await expect(page.locator('#reviews')).toBeInViewport();
+
     // Test navigation to Contact section
     await page.getByRole('link', { name: 'Contact' }).click();
     await expect(page.locator('#contact')).toBeInViewport();
@@ -119,6 +124,7 @@ test.describe('Navigation', () => {
     // Check mobile menu items are visible
     await expect(page.getByRole('link', { name: 'Home' })).toBeVisible();
     await expect(page.getByRole('link', { name: 'Services' })).toBeVisible();
+    await expect(page.getByRole('link', { name: 'Reviews' })).toBeVisible();
     await expect(page.getByRole('link', { name: 'Contact' })).toBeVisible();
   });
 
@@ -209,6 +215,172 @@ test.describe('Map Section', () => {
 
     // Map should still be visible after interaction
     await expect(mapContainer).toBeVisible();
+  });
+});
+
+test.describe('Reviews Section', () => {
+  test('should display reviews section', async ({ page }) => {
+    await page.goto('/#reviews');
+
+    // Check reviews heading
+    await expect(page.getByRole('heading', { name: /CUSTOMER REVIEWS/i })).toBeVisible();
+
+    // Check subtitle
+    await expect(page.getByText(/See what our customers are saying about us/i)).toBeVisible();
+
+    // Check reviews section is visible
+    const reviewsSection = page.locator('#reviews');
+    await expect(reviewsSection).toBeVisible();
+  });
+
+  test('should display all three review cards', async ({ page }) => {
+    await page.goto('/');
+
+    // Scroll to reviews section
+    await page.locator('#reviews').scrollIntoViewIfNeeded();
+
+    // Check that all three review cards are visible
+    const reviewCards = page.locator('#reviews [role="article"]');
+    await expect(reviewCards).toHaveCount(3);
+
+    // Verify all cards are visible
+    for (let i = 0; i < 3; i++) {
+      await expect(reviewCards.nth(i)).toBeVisible();
+    }
+  });
+
+  test('should display star ratings for each review', async ({ page }) => {
+    await page.goto('/');
+
+    // Scroll to reviews section
+    await page.locator('#reviews').scrollIntoViewIfNeeded();
+
+    // Check each review has a star rating
+    const starRatings = page.locator('#reviews [aria-label*="star rating"]');
+    await expect(starRatings).toHaveCount(3);
+
+    // Verify each rating has 5 stars
+    const reviewCards = page.locator('#reviews [role="article"]');
+    for (let i = 0; i < 3; i++) {
+      const stars = reviewCards.nth(i).locator('svg.text-yellow-400');
+      await expect(stars).toHaveCount(5);
+    }
+  });
+
+  test('should display review text and reviewer names', async ({ page }) => {
+    await page.goto('/');
+
+    // Scroll to reviews section
+    await page.locator('#reviews').scrollIntoViewIfNeeded();
+
+    const reviewCards = page.locator('#reviews [role="article"]');
+
+    // Check each review card has text and a name
+    for (let i = 0; i < 3; i++) {
+      const card = reviewCards.nth(i);
+
+      // Check for review text (paragraph with quote)
+      const reviewText = card.locator('p.text-gray-700');
+      await expect(reviewText).toBeVisible();
+      const text = await reviewText.textContent();
+      expect(text?.length).toBeGreaterThan(0);
+
+      // Check for reviewer name (paragraph with font-semibold)
+      const reviewerName = card.locator('p.font-semibold');
+      await expect(reviewerName).toBeVisible();
+      const name = await reviewerName.textContent();
+      expect(name?.length).toBeGreaterThan(0);
+    }
+  });
+
+  test('should have proper accessibility attributes', async ({ page }) => {
+    await page.goto('/');
+
+    // Scroll to reviews section
+    await page.locator('#reviews').scrollIntoViewIfNeeded();
+
+    // Check each review card has proper role and aria-label
+    const reviewCards = page.locator('#reviews [role="article"]');
+    await expect(reviewCards).toHaveCount(3);
+
+    for (let i = 0; i < 3; i++) {
+      const card = reviewCards.nth(i);
+      const ariaLabel = await card.getAttribute('aria-label');
+      expect(ariaLabel).toContain('Customer review from');
+    }
+
+    // Check star ratings have aria-labels
+    const starRatings = page.locator('#reviews [aria-label*="star rating"]');
+    for (let i = 0; i < 3; i++) {
+      const rating = starRatings.nth(i);
+      const ariaLabel = await rating.getAttribute('aria-label');
+      expect(ariaLabel).toContain('star rating');
+    }
+  });
+
+  test('should be responsive on mobile devices', async ({ page }) => {
+    // Set mobile viewport
+    await page.setViewportSize({ width: 375, height: 667 });
+    await page.goto('/');
+
+    // Scroll to reviews section
+    await page.locator('#reviews').scrollIntoViewIfNeeded();
+
+    // Check reviews section is visible on mobile
+    await expect(page.locator('#reviews')).toBeVisible();
+    await expect(page.getByRole('heading', { name: /CUSTOMER REVIEWS/i })).toBeVisible();
+
+    // Check review cards are stacked vertically (grid-cols-1 on mobile)
+    const reviewCards = page.locator('#reviews [role="article"]');
+    await expect(reviewCards).toHaveCount(3);
+
+    // All cards should be visible and properly stacked
+    for (let i = 0; i < 3; i++) {
+      await expect(reviewCards.nth(i)).toBeVisible();
+    }
+  });
+
+  test('should be responsive on tablet devices', async ({ page }) => {
+    // Set tablet viewport
+    await page.setViewportSize({ width: 768, height: 1024 });
+    await page.goto('/');
+
+    // Scroll to reviews section
+    await page.locator('#reviews').scrollIntoViewIfNeeded();
+
+    // Check reviews section is visible on tablet
+    await expect(page.locator('#reviews')).toBeVisible();
+
+    // Check all review cards are visible
+    const reviewCards = page.locator('#reviews [role="article"]');
+    await expect(reviewCards).toHaveCount(3);
+  });
+
+  test('should navigate to reviews section from navigation menu', async ({ page }) => {
+    // Desktop viewport
+    await page.setViewportSize({ width: 1280, height: 720 });
+    await page.goto('/');
+
+    // Click on Reviews link in navigation
+    await page.getByRole('link', { name: 'Reviews' }).click();
+
+    // Check reviews section is in viewport
+    await expect(page.locator('#reviews')).toBeInViewport();
+  });
+
+  test('should navigate to reviews section from mobile menu', async ({ page }) => {
+    // Mobile viewport
+    await page.setViewportSize({ width: 375, height: 667 });
+    await page.goto('/');
+
+    // Open mobile menu
+    await page.getByRole('button', { name: /Toggle mobile menu/i }).click();
+
+    // Click on Reviews link
+    await page.getByRole('link', { name: 'Reviews' }).click();
+
+    // Check reviews section is in viewport
+    await expect(page.locator('#reviews')).toBeInViewport();
   });
 });
 
