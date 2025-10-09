@@ -4,24 +4,70 @@ This document contains all information about hosting, domain management, and dep
 
 ---
 
-## ⚠️ CRITICAL REQUIREMENT
+## ⚠️ CRITICAL REQUIREMENTS
 
-**Before deploying to GitHub Pages, you MUST ensure the `.nojekyll` file is created in the `dist/` directory during the build process.**
+### 1. GitHub Pages Source Configuration
 
-Without this file, GitHub Pages will use Jekyll processing which causes:
+**MOST COMMON ISSUE:** GitHub Pages must be configured to deploy from "GitHub Actions", not "Deploy from a branch".
+
+**Symptoms if misconfigured:**
+- ❌ Source files (`/src/main.js`) served instead of built files
+- ❌ All images return 404 errors
+- ❌ CSS and JavaScript fail to load
+- ❌ Error: `Failed to resolve module specifier "alpinejs"`
+- ❌ Site appears completely broken
+
+**Fix immediately:**
+1. Go to: https://github.com/Bobbyberta/park-and-paint/settings/pages
+2. Under "Build and deployment" → "Source"
+3. **Must be:** "GitHub Actions" (NOT "Deploy from a branch")
+4. Save and trigger redeployment
+
+**Verification:**
+```bash
+# Check if site serves BUILT files (correct):
+curl https://parkandpaint.co.uk/ | grep 'assets/index'
+# Should find: /assets/index-YwDCR4tM.js
+
+# NOT source files (incorrect):
+curl https://parkandpaint.co.uk/ | grep '/src/main.js'
+# Should find nothing
+```
+
+### 2. .nojekyll File Requirement
+
+**SECOND CRITICAL REQUIREMENT:** The `.nojekyll` file must be created in `dist/` during deployment.
+
+**Why it's needed:**
+- GitHub Pages uses Jekyll by default to process static sites
+- Jekyll ignores files/folders starting with `_` 
+- Vite generates modern build outputs that Jekyll misinterprets
+- `.nojekyll` tells GitHub Pages: "Skip Jekyll processing entirely"
+
+**Symptoms if missing:**
 - ❌ All images return 404 errors
 - ❌ CSS stylesheets fail to load
 - ❌ JavaScript modules fail with "Failed to resolve module specifier" errors
 - ❌ Interactive map doesn't display
-- ❌ Site appears completely broken
 
-**Solution:** The GitHub Actions workflow (`.github/workflows/deploy.yml`) automatically creates this file during deployment. **Never remove this step.**
+**Solution (Already Configured):**
 
-Verify it exists after deployment:
-```bash
-# In the workflow, this step is required:
+The GitHub Actions workflow automatically creates this file:
+
+```yaml
+# In .github/workflows/deploy.yml - NEVER REMOVE THIS STEP
 - name: Create .nojekyll file
   run: touch dist/.nojekyll
+```
+
+**Verification:**
+```bash
+# Check workflow has the step:
+grep -A 2 "Create .nojekyll" .github/workflows/deploy.yml
+
+# After deployment, verify no Jekyll processing:
+curl -I https://parkandpaint.co.uk/.nojekyll
+# Should return 200 OK (not 404)
 ```
 
 ---
@@ -255,69 +301,80 @@ This file tells GitHub Pages to serve the site on your custom domain. Use the ap
 
 ## 🆘 Troubleshooting
 
-### Assets Not Loading & Module Resolution Errors (CRITICAL)
+### Site Completely Broken After Deployment (MOST COMMON)
 
 **Symptoms:**
 - Images return 404 errors: `GET https://parkandpaint.co.uk/images/hero-bg.jpg 404`
 - CSS not loading properly
 - JavaScript error: `Uncaught TypeError: Failed to resolve module specifier "alpinejs"`
+- Error shows `/src/main.js` instead of `/assets/index-XXX.js`
 - Map (Leaflet) not displaying
 - Site appears broken with no styling
 
-**Root Cause:** Missing `.nojekyll` file causes GitHub Pages to use Jekyll processing, which interferes with Vite builds
+**Root Cause #1: Wrong GitHub Pages Source (90% of issues)**
 
-**Solution (REQUIRED):**
-1. Ensure `.nojekyll` file exists in `public/` folder:
+GitHub Pages is deploying from repository branch instead of GitHub Actions artifact.
+
+**Diagnosis:**
+```bash
+# Check what's being served:
+curl https://parkandpaint.co.uk/ | grep -o 'src="[^"]*main.js"'
+
+# If returns: src="/src/main.js" → WRONG (source files)
+# Should return: src="/assets/index-XXX.js" → CORRECT (built files)
+```
+
+**Fix:**
+1. Visit: https://github.com/Bobbyberta/park-and-paint/settings/pages
+2. Under "Build and deployment" → "Source"
+3. **Change from:** "Deploy from a branch" 
+4. **Change to:** "GitHub Actions"
+5. Save the change
+6. Trigger redeployment:
    ```bash
-   touch public/.nojekyll
-   ```
-2. Verify `vite.config.js` has `base: '/'` (not '/repo-name/')
-3. Rebuild the site:
-   ```bash
-   npm run build
-   ```
-4. Verify `.nojekyll` exists in `dist/` folder after build:
-   ```bash
-   ls -la dist/.nojekyll
-   ```
-5. Commit and push all changes:
-   ```bash
-   git add public/.nojekyll
-   git commit -m "fix: Add .nojekyll to prevent Jekyll processing"
+   git commit --allow-empty -m "trigger: redeploy with GitHub Actions"
    git push origin main
    ```
-6. Wait 2-5 minutes for deployment to complete
-7. Clear browser cache (Cmd+Shift+R) or test in incognito mode
+7. Wait 2-5 minutes for GitHub Actions to complete
+8. Check: https://github.com/Bobbyberta/park-and-paint/actions
+9. Clear browser cache (Cmd+Shift+R) and test in incognito mode
 
-**Why This Happens:**
-- GitHub Pages uses Jekyll by default to process static sites
-- Jekyll ignores files/folders starting with `_` (like `_app` or `_next`)
-- Vite may create asset paths that Jekyll misinterprets
-- The `.nojekyll` file tells GitHub Pages to skip Jekyll processing entirely
-- This is REQUIRED for all Vite/modern build tool deployments
+**Root Cause #2: Missing .nojekyll File (10% of issues)**
 
-**Prevention:**
-- Always include `.nojekyll` in `public/` folder for Vite projects
-- Verify it's copied to `dist/` after every build
-- Add to deployment checklist (see below)
+Even with correct GitHub Actions source, missing `.nojekyll` causes Jekyll processing.
 
-**Prevention Rules for .nojekyll:**
+**Diagnosis:**
+```bash
+# Check if workflow has .nojekyll step:
+grep "Create .nojekyll" .github/workflows/deploy.yml
 
-*For New Projects:*
-1. Create `.nojekyll` file FIRST, before initial deployment
-2. Add to version control (not in .gitignore)
-3. Verify in `dist/` after first build
+# Check if deployed:
+curl -I https://parkandpaint.co.uk/.nojekyll
+# Should return: HTTP/2 200 (not 404)
+```
 
-*For Existing Projects:*
-1. Audit for `.nojekyll` file monthly
-2. Include in pre-deployment checklist
-3. Monitor browser console after every deployment
+**Fix:**
+1. Verify `.github/workflows/deploy.yml` contains:
+   ```yaml
+   - name: Create .nojekyll file
+     run: touch dist/.nojekyll
+   ```
+2. If missing, add it after the build step
+3. Commit and push:
+   ```bash
+   git add .github/workflows/deploy.yml
+   git commit -m "fix: add .nojekyll creation to workflow"
+   git push origin main
+   ```
+4. Wait for redeployment
 
-*For Migrations:*
-- When moving FROM another host TO GitHub Pages:
-  - Add `.nojekyll` immediately
-  - Test thoroughly before DNS cutover
-  - Keep old hosting active during testing
+**Prevention Checklist:**
+
+Before every deployment:
+- [ ] Verify GitHub Pages Source is "GitHub Actions" (not branch)
+- [ ] Verify workflow has `.nojekyll` creation step
+- [ ] Check Actions tab shows successful builds
+- [ ] Test in incognito mode after deployment
 
 ### Assets Not Loading (404 Errors)
 
@@ -406,14 +463,22 @@ This file tells GitHub Pages to serve the site on your custom domain. Use the ap
 
 Use this checklist before every deployment to prevent common issues:
 
-### Critical Workflow Verification (DO THIS FIRST)
+### Critical Configuration Verification (DO THIS FIRST)
+
+**1. GitHub Pages Source Settings:**
+- [ ] Go to: https://github.com/Bobbyberta/park-and-paint/settings/pages
+- [ ] **VERIFY** "Source" is set to: **"GitHub Actions"**
+- [ ] **NOT** "Deploy from a branch"
+- [ ] This is the #1 cause of deployment failures
+
+**2. Workflow .nojekyll Step:**
 - [ ] **VERIFY** `.github/workflows/deploy.yml` contains the `.nojekyll` creation step:
   ```yaml
   - name: Create .nojekyll file
     run: touch dist/.nojekyll
   ```
 - [ ] **NEVER REMOVE** this step from the workflow
-- [ ] If this step is missing, the entire site will break on deployment
+- [ ] If either setting is wrong, the entire site will break on deployment
 
 ### Build Verification
 - [ ] `CNAME` file in `public/` contains: `parkandpaint.co.uk` (no www, no protocol)
