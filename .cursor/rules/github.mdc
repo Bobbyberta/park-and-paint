@@ -12,10 +12,12 @@ alwaysApply: true
 - Keep repository public for GitHub Pages deployment
 
 ## GitHub Pages Deployment
-- Use GitHub Actions workflow for automated deployment
-- Deploy from `dist/` directory after Vite build process
-- Enable GitHub Pages with "GitHub Actions" source
-- Set custom domain: `www.parkandpaint.co.uk` via CNAME file
+- **CRITICAL:** Create `public/.nojekyll` file to prevent Jekyll processing (causes 404s, broken CSS/JS)
+- Deploy from `dist/` directory after Vite build process via GitHub Actions
+- Set `base: '/'` in `vite.config.js` for custom domains (NOT '/repo-name/')
+- Custom domain: Add `public/CNAME` with `www.parkandpaint.co.uk` (domain only, no protocol)
+- Enable GitHub Pages with "GitHub Actions" source in repo settings
+- Verify after deployment: `.nojekyll` exists in `dist/`, all assets load, no console errors
 - Configure DNS: CNAME record pointing to `username.github.io`
 
 ## Workflow Configuration
