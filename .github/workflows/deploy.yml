@@ -40,6 +40,10 @@ jobs:
       - name: Build
         run: npm run build
         
+      # CRITICAL: This step is REQUIRED for GitHub Pages + Vite deployments
+      # Without .nojekyll, GitHub Pages uses Jekyll processing which breaks the site
+      # Symptoms: 404 errors for images, CSS, JS, and module resolution failures
+      # DO NOT REMOVE THIS STEP - See docs/DEPLOYMENT.md for details
       - name: Create .nojekyll file
         run: touch dist/.nojekyll
         

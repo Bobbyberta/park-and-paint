@@ -5,6 +5,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Fixed
+- **CRITICAL DEPLOYMENT FIX**: Added `.nojekyll` file creation step to GitHub Actions workflow
+  - Previously, `.nojekyll` was only in `public/` but Vite doesn't copy it to `dist/`
+  - Now automatically created in `dist/` during deployment via workflow step
+  - Prevents GitHub Pages Jekyll processing that causes 404 errors for all assets
+  - Resolves: images failing to load, CSS not applying, JavaScript module resolution errors
+  - **Impact**: Without this fix, the entire deployed site appears broken
+
+### Changed
+- 📚 **Enhanced documentation** to prevent future `.nojekyll` issues:
+  - Added prominent warnings in README.md about critical deployment requirements
+  - Updated DEPLOYMENT.md with step-by-step troubleshooting for asset loading issues
+  - Improved QUICKSTART.md with clear warnings about workflow requirements
+  - Added inline comments in `.github/workflows/deploy.yml` to prevent accidental removal
+  - Created comprehensive Pre-Deployment Checklist focusing on workflow verification
+
 ## [1.0.1] - 2025-10-09
 
 ### Added

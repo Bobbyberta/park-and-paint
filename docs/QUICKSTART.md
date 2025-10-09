@@ -118,12 +118,25 @@ npm run build
 
 ## Step 6: Deploy to GitHub Pages
 
+### ⚠️ CRITICAL: Before First Deployment
+
+**The GitHub Actions workflow MUST include a step to create `.nojekyll` in the `dist/` directory.**
+
+Check that `.github/workflows/deploy.yml` contains:
+```yaml
+- name: Create .nojekyll file
+  run: touch dist/.nojekyll
+```
+
+**Why this is critical:**
+- Without `.nojekyll`, GitHub Pages uses Jekyll processing
+- Jekyll breaks Vite builds causing 404 errors for ALL assets
+- Your site will appear completely broken (no images, CSS, or JS)
+- **This is the #1 cause of deployment failures**
+
 ### First Time Setup
 
 ```bash
-# IMPORTANT: Create .nojekyll file first (REQUIRED for Vite)
-touch public/.nojekyll
-
 # Initialize git repository
 git init
 git add .
@@ -134,8 +147,6 @@ git remote add origin https://github.com/yourusername/park-and-paint.git
 git branch -M main
 git push -u origin main
 ```
-
-**⚠️ CRITICAL:** The `.nojekyll` file is REQUIRED to prevent GitHub Pages from using Jekyll processing, which breaks Vite builds. Without it, you'll get 404 errors for all assets and CSS.
 
 ### Enable GitHub Pages
 
@@ -195,8 +206,15 @@ npm update        # Update packages
 ### Troubleshooting
 
 **Site broken after deployment? (404 errors, no CSS, module errors)**
-- **Most common cause:** Missing `.nojekyll` file
-- Solution: Run `touch public/.nojekyll`, rebuild, and redeploy
+- **Most common cause:** Missing `.nojekyll` creation step in GitHub Actions workflow
+- **DO NOT** just create `public/.nojekyll` - it won't be copied to `dist/` by Vite
+- **Solution:** Verify `.github/workflows/deploy.yml` has the `.nojekyll` creation step:
+  ```yaml
+  - name: Create .nojekyll file
+    run: touch dist/.nojekyll
+  ```
+- If missing, add this step after the build step and before the deploy step
+- Commit, push, and wait for redeployment
 - See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed fix
 
 **Map not showing?**

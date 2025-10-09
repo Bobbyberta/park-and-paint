@@ -73,6 +73,24 @@ Comprehensive guides are available in the `docs/` folder:
 
 ## 🚀 Deployment
 
+### ⚠️ CRITICAL DEPLOYMENT REQUIREMENT
+
+**The `.nojekyll` file MUST be created in the `dist/` directory during deployment.**
+
+Without this file, GitHub Pages will use Jekyll processing which breaks the site completely:
+- ❌ All images return 404 errors
+- ❌ CSS stylesheets fail to load  
+- ❌ JavaScript modules fail with resolution errors
+- ❌ Site appears completely broken
+
+**This is already configured** in `.github/workflows/deploy.yml`:
+```yaml
+- name: Create .nojekyll file
+  run: touch dist/.nojekyll
+```
+
+**⚠️ NEVER REMOVE THIS STEP FROM THE WORKFLOW**
+
 ### Current Hosting Setup
 
 **Hosting:** GitHub Pages  
@@ -98,6 +116,7 @@ This project uses **GitHub Actions** for automatic deployment:
 1. **Automatic Deployment**
    - Every push to `main` branch triggers deployment
    - GitHub Actions workflow builds and deploys automatically
+   - **Creates `.nojekyll` file** (CRITICAL STEP - never remove)
    - Check deployment status: https://github.com/Bobbyberta/park-and-paint/actions
    - Build time: ~2 minutes
    - Full propagation: ~10 minutes
@@ -105,12 +124,13 @@ This project uses **GitHub Actions** for automatic deployment:
 2. **Workflow Configuration**
    - Located in `.github/workflows/deploy.yml`
    - Uses Node.js 20 for consistent builds
+   - **Includes `.nojekyll` creation step** (required for Vite + GitHub Pages)
    - Deploys `dist/` directory to GitHub Pages
    - Runs on every push and can be triggered manually
 
 3. **Domain Configuration**
    - Custom domain configured in GitHub Pages settings
-   - `CNAME` file in `public/` directory points to `www.parkandpaint.co.uk`
+   - `CNAME` file in `public/` directory points to `parkandpaint.co.uk`
    - `vite.config.js` has `base: '/'` for custom domain deployment
 
 ### Manual Build (Testing Only)

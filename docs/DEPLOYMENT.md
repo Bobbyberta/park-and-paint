@@ -2,6 +2,30 @@
 
 This document contains all information about hosting, domain management, and deployment for the Park and Paint website.
 
+---
+
+## ⚠️ CRITICAL REQUIREMENT
+
+**Before deploying to GitHub Pages, you MUST ensure the `.nojekyll` file is created in the `dist/` directory during the build process.**
+
+Without this file, GitHub Pages will use Jekyll processing which causes:
+- ❌ All images return 404 errors
+- ❌ CSS stylesheets fail to load
+- ❌ JavaScript modules fail with "Failed to resolve module specifier" errors
+- ❌ Interactive map doesn't display
+- ❌ Site appears completely broken
+
+**Solution:** The GitHub Actions workflow (`.github/workflows/deploy.yml`) automatically creates this file during deployment. **Never remove this step.**
+
+Verify it exists after deployment:
+```bash
+# In the workflow, this step is required:
+- name: Create .nojekyll file
+  run: touch dist/.nojekyll
+```
+
+---
+
 ## 🌐 Current Setup
 
 ### Hosting
@@ -137,9 +161,13 @@ Every push to the `main` branch triggers an automatic deployment:
    - Sets up Node.js 20
    - Installs dependencies (`npm ci`)
    - Builds project (`npm run build`)
+   - **⚠️ Creates `.nojekyll` file** (`touch dist/.nojekyll`) - **CRITICAL STEP**
+   - Configures GitHub Pages
    - Deploys `dist/` folder to GitHub Pages
 4. **Site goes live** within ~2 minutes
 5. **CDN propagates** within ~10 minutes
+
+**Note:** The `.nojekyll` creation step is REQUIRED and must never be removed from the workflow.
 
 ### Manual Deployment Trigger
 
@@ -378,13 +406,21 @@ This file tells GitHub Pages to serve the site on your custom domain. Use the ap
 
 Use this checklist before every deployment to prevent common issues:
 
+### Critical Workflow Verification (DO THIS FIRST)
+- [ ] **VERIFY** `.github/workflows/deploy.yml` contains the `.nojekyll` creation step:
+  ```yaml
+  - name: Create .nojekyll file
+    run: touch dist/.nojekyll
+  ```
+- [ ] **NEVER REMOVE** this step from the workflow
+- [ ] If this step is missing, the entire site will break on deployment
+
 ### Build Verification
-- [ ] `.nojekyll` file exists in `public/` folder
-- [ ] `CNAME` file in `public/` contains: `www.parkandpaint.co.uk`
+- [ ] `CNAME` file in `public/` contains: `parkandpaint.co.uk` (no www, no protocol)
 - [ ] `vite.config.js` has `base: '/'` (not a repo path)
 - [ ] Run `npm run build` successfully with no errors
 - [ ] Verify `dist/` folder contains:
-  - [ ] `.nojekyll` file
+  - [ ] `.nojekyll` file (created by workflow, not Vite)
   - [ ] `CNAME` file
   - [ ] `index.html` with bundled asset references
   - [ ] `assets/` folder with JS and CSS bundles
