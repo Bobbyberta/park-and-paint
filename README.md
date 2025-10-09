@@ -65,12 +65,11 @@ The site will be available at `http://localhost:3000`
 Comprehensive guides are available in the `docs/` folder:
 
 - **[Quick Start Guide](docs/QUICKSTART.md)** - Get up and running in 5 minutes
-- **[Deployment Guide](docs/DEPLOYMENT.md)** - Complete deployment documentation, DNS, and troubleshooting
+- **[Deployment Guide](docs/DEPLOYMENT.md)** - Complete deployment documentation, DNS, GitHub Pages, and troubleshooting
 - **[Development Setup](docs/DEVELOPMENT.md)** - Local development environment setup
 - **[Environment Configuration](docs/ENVIRONMENT.md)** - Environment variables and configuration
 - **[Testing Guide](docs/TESTING.md)** - Unit testing, E2E testing, and test strategies
 - **[Test Maintenance](docs/TEST-MAINTENANCE.md)** - Keeping tests up to date
-- **[GitHub Pages Setup](docs/github-pages.md)** - Vite + GitHub Pages deployment rules
 
 ## 🚀 Deployment
 

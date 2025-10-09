@@ -273,6 +273,24 @@ This file tells GitHub Pages to serve the site on your custom domain. Use the ap
 - Verify it's copied to `dist/` after every build
 - Add to deployment checklist (see below)
 
+**Prevention Rules for .nojekyll:**
+
+*For New Projects:*
+1. Create `.nojekyll` file FIRST, before initial deployment
+2. Add to version control (not in .gitignore)
+3. Verify in `dist/` after first build
+
+*For Existing Projects:*
+1. Audit for `.nojekyll` file monthly
+2. Include in pre-deployment checklist
+3. Monitor browser console after every deployment
+
+*For Migrations:*
+- When moving FROM another host TO GitHub Pages:
+  - Add `.nojekyll` immediately
+  - Test thoroughly before DNS cutover
+  - Keep old hosting active during testing
+
 ### Assets Not Loading (404 Errors)
 
 **Symptom:** Images, CSS, or JS files return 404 errors (after .nojekyll is confirmed present)
