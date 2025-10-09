@@ -16,7 +16,7 @@ This document contains all information about hosting, domain management, and dep
 ### Domain Registration
 
 - **Registrar:** Wix
-- **Domain Name:** www.parkandpaint.co.uk
+- **Domain Name:** parkandpaint.co.uk (apex domain with www subdomain)
 - **Registration Date:** June 22, 2024 (assumed)
 - **Expiration Date:** **June 22, 2028**
 - **Auto-Renewal:** Check Wix account settings
@@ -26,6 +26,30 @@ This document contains all information about hosting, domain management, and dep
 
 The domain is registered with Wix but points to GitHub Pages:
 
+**A Records (Apex domain):**
+```
+Type: A
+Name: @ (or parkandpaint.co.uk)
+Value: 185.199.108.153
+TTL: 3600
+
+Type: A
+Name: @ (or parkandpaint.co.uk)
+Value: 185.199.109.153
+TTL: 3600
+
+Type: A
+Name: @ (or parkandpaint.co.uk)
+Value: 185.199.110.153
+TTL: 3600
+
+Type: A
+Name: @ (or parkandpaint.co.uk)
+Value: 185.199.111.153
+TTL: 3600
+```
+
+**CNAME Record (www subdomain):**
 ```
 Type: CNAME
 Name: www
@@ -37,6 +61,8 @@ TTL: 3600
 - DNS is managed through Wix dashboard (Settings → Domains → DNS)
 - Keep Wix domain registration active (renew before June 22, 2028)
 - Can cancel Wix website hosting, but keep domain registration
+- A records point apex domain to GitHub Pages
+- CNAME redirects www subdomain to apex domain
 
 ### Analytics & Monitoring
 
@@ -56,6 +82,47 @@ TTL: 3600
 **Access:**
 - Owner email: stuart@parkandpaint.co.uk
 - Dashboard link: https://analytics.google.com/analytics/web/#/p457825825 (verify actual property ID)
+
+## ⚙️ Initial Setup (One-Time)
+
+### Step 1: Configure GitHub Pages
+
+1. Go to repository settings: https://github.com/Bobbyberta/park-and-paint/settings/pages
+2. Under "Build and deployment":
+   - **Source:** Select "GitHub Actions"
+3. Under "Custom domain":
+   - Enter: `parkandpaint.co.uk`
+   - Click "Save"
+4. Wait for DNS check (shows green checkmark when successful)
+5. Enable "Enforce HTTPS" checkbox
+
+### Step 2: Verify DNS Configuration
+
+Check your Wix DNS settings match these records:
+
+**A Records (required for apex domain):**
+- `185.199.108.153`
+- `185.199.109.153`
+- `185.199.110.153`
+- `185.199.111.153`
+
+**CNAME Record:**
+- Name: `www`
+- Value: `bobbyberta.github.io`
+
+### Step 3: Wait for DNS Propagation
+
+- DNS changes can take 1-48 hours to propagate
+- Check status: `nslookup parkandpaint.co.uk`
+- Test site in incognito mode to avoid cache issues
+
+### Step 4: Verify Deployment
+
+Once DNS propagates, verify:
+- ✅ `https://parkandpaint.co.uk` loads correctly
+- ✅ `https://www.parkandpaint.co.uk` redirects to apex domain
+- ✅ All images and assets load properly
+- ✅ SSL certificate is active (padlock icon in browser)
 
 ## 🚀 Deployment Process
 
@@ -110,18 +177,26 @@ base: '/',  // Must be '/' for custom domain (NOT '/park-and-paint/')
 ### CNAME File (`public/CNAME`)
 
 ```
-www.parkandpaint.co.uk
+parkandpaint.co.uk
 ```
 
-This file tells GitHub Pages to serve the site on your custom domain.
+This file tells GitHub Pages to serve the site on your custom domain. Use the apex domain (without www) to allow GitHub Pages to handle both apex and www subdomain automatically.
 
 ### GitHub Pages Settings
 
 **Repository Settings → Pages:**
 - Source: GitHub Actions
-- Custom domain: www.parkandpaint.co.uk
+- Custom domain: parkandpaint.co.uk
 - Enforce HTTPS: ✓ Enabled
 - Branch: main (via GitHub Actions)
+
+**To configure custom domain in GitHub:**
+1. Go to: https://github.com/Bobbyberta/park-and-paint/settings/pages
+2. Under "Custom domain", enter: `parkandpaint.co.uk`
+3. Click "Save"
+4. Wait for DNS check to complete (green checkmark)
+5. Enable "Enforce HTTPS" once DNS check passes
+6. This will automatically create/update the CNAME file in your repository
 
 ## 🔧 Maintenance Tasks
 
@@ -167,10 +242,15 @@ This file tells GitHub Pages to serve the site on your custom domain.
 **Symptom:** Site shows "404 - There isn't a GitHub Pages site here"
 
 **Solution:**
-1. Check GitHub Pages settings has custom domain: www.parkandpaint.co.uk
-2. Verify `public/CNAME` file exists with correct domain
-3. Check DNS settings in Wix point to `bobbyberta.github.io`
-4. Wait up to 48 hours for DNS propagation
+1. Check GitHub Pages settings has custom domain: parkandpaint.co.uk
+   - Go to: https://github.com/Bobbyberta/park-and-paint/settings/pages
+   - Verify custom domain is set correctly
+2. Verify `public/CNAME` file contains: `parkandpaint.co.uk`
+3. Check DNS settings in Wix:
+   - A records point to GitHub Pages IPs (185.199.108-111.153)
+   - CNAME record for www points to `bobbyberta.github.io`
+4. Wait up to 48 hours for DNS propagation (typically 1-2 hours)
+5. Clear browser cache or test in incognito mode
 
 ### Deployment Failing
 
