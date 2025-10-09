@@ -38,6 +38,7 @@
     <meta name="ICBM" content="51.3792880272762, -2.3531900513862065" />
     <meta name="theme-color" content="#006DE0" />
     <meta name="msapplication-TileColor" content="#006DE0" />
+    <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="apple-mobile-web-app-title" content="Park and Paint" />
@@ -71,7 +72,7 @@
     <!-- Security Headers -->
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' fonts.googleapis.com https://unpkg.com; font-src fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://*.tile.openstreetmap.org https://tile.openstreetmap.org https://www.googletagmanager.com https://www.google-analytics.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self';"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' fonts.googleapis.com https://unpkg.com; font-src fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://*.tile.openstreetmap.org https://tile.openstreetmap.org https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self';"
     />
     <meta http-equiv="X-Content-Type-Options" content="nosniff" />
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
@@ -95,8 +96,20 @@
     />
 
     <!-- Preload Critical Images -->
-    <link rel="preload" href="/images/hero-bg-1200w.webp" as="image" type="image/webp" />
-    <link rel="preload" href="/images/hero-bg.jpg" as="image" type="image/jpeg" />
+    <link
+      rel="preload"
+      href="/images/hero-bg-1200w.webp"
+      as="image"
+      type="image/webp"
+      fetchpriority="high"
+    />
+    <link
+      rel="preload"
+      href="/images/hero-bg.jpg"
+      as="image"
+      type="image/jpeg"
+      fetchpriority="high"
+    />
 
     <!-- Leaflet CSS -->
     <link

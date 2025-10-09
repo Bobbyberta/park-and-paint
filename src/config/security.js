@@ -28,7 +28,14 @@ export function generateCSP(isProduction = false) {
       'data:',
       'https:', // Allow all HTTPS images (for maps, etc.)
     ],
-    'connect-src': ["'self'", 'https://*.tile.openstreetmap.org', 'https://tile.openstreetmap.org'],
+    'connect-src': [
+      "'self'",
+      'https://*.tile.openstreetmap.org',
+      'https://tile.openstreetmap.org',
+      'https://www.googletagmanager.com',
+      'https://www.google-analytics.com',
+      'https://*.google-analytics.com', // GA4 regional endpoints
+    ],
     'frame-src': ["'none'"],
     'object-src': ["'none'"],
     'base-uri': ["'self'"],
