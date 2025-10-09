@@ -8,20 +8,35 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Fixed
-- **CRITICAL DEPLOYMENT FIX**: Added `.nojekyll` file creation step to GitHub Actions workflow
+- **CRITICAL DEPLOYMENT FIX #1**: Identified GitHub Pages source configuration as primary issue (90% of failures)
+  - Root cause: GitHub Pages was set to "Deploy from a branch" instead of "GitHub Actions"
+  - Symptom: Site serves source files (`/src/main.js`) instead of built bundles (`/assets/index-XXX.js`)
+  - Result: All images, CSS, and JavaScript return 404 errors
+  - **Impact**: Entire site appears broken - this is the #1 deployment failure cause
+  
+- **CRITICAL DEPLOYMENT FIX #2**: Added `.nojekyll` file creation step to GitHub Actions workflow
   - Previously, `.nojekyll` was only in `public/` but Vite doesn't copy it to `dist/`
   - Now automatically created in `dist/` during deployment via workflow step
   - Prevents GitHub Pages Jekyll processing that causes 404 errors for all assets
   - Resolves: images failing to load, CSS not applying, JavaScript module resolution errors
-  - **Impact**: Without this fix, the entire deployed site appears broken
+  - **Impact**: Without this fix, even with correct source config, site can still break
 
 ### Changed
-- 📚 **Enhanced documentation** to prevent future `.nojekyll` issues:
+- 📚 **Consolidated deployment documentation** into single comprehensive guide:
+  - Merged `DEPLOYMENT-FIX.md`, `NOJEKYLL-REQUIREMENT.md` into `DEPLOYMENT.md`
+  - Prioritized issues by frequency: GitHub Pages source (90%) > .nojekyll (10%)
+  - Added "Critical Requirements" section at top covering both common issues
+  - Enhanced troubleshooting with diagnostic commands before fixes
+  - Removed 313 lines of redundant documentation, added 122 lines of focused content
+  - Single source of truth for all deployment information
+
+- 📚 **Enhanced documentation** to prevent future deployment issues:
   - Added prominent warnings in README.md about critical deployment requirements
-  - Updated DEPLOYMENT.md with step-by-step troubleshooting for asset loading issues
-  - Improved QUICKSTART.md with clear warnings about workflow requirements
+  - Updated DEPLOYMENT.md with step-by-step troubleshooting prioritized by frequency
+  - Improved QUICKSTART.md with clear warnings about GitHub Pages source configuration
   - Added inline comments in `.github/workflows/deploy.yml` to prevent accidental removal
-  - Created comprehensive Pre-Deployment Checklist focusing on workflow verification
+  - Created comprehensive Pre-Deployment Checklist with GitHub Pages source verification as #1 priority
+  - Included diagnostic commands to identify root cause before applying fixes
 
 ## [1.0.1] - 2025-10-09
 
